@@ -157,13 +157,17 @@ const init = onMounted(() => {
       font-weight: bold;
       background: linear-gradient(180deg, #57d7ff 0%, #1e50a6 100%);
       color: #fff;
+      transition: .3s;
       & + li {
         margin-left: 5px;
+      }
+      &:active{
+        transform: translateY(2px);
       }
     }
     .regBtn {
       border-radius: 5px;
-      color: #777;
+      color: #333;
       background: linear-gradient(180deg, #f8e98e 0%, #f2d06f 100%);
     }
   }
