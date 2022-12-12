@@ -19,6 +19,7 @@ const routes = [
         component: Home,
         meta: {
           title: "Home page title",
+          menuIdx: 0
         },
       },
       {
@@ -27,6 +28,7 @@ const routes = [
         component: Sports,
         meta: {
           title: "Sports page title",
+          menuIdx: 1
         },
       },
       {
@@ -35,6 +37,7 @@ const routes = [
         component: Casino,
         meta: {
           title: "Casino page title",
+          menuIdx: 2
         },
       },
       {
@@ -43,19 +46,20 @@ const routes = [
         component: Computer,
         meta: {
           title: "Computer page title",
+          menuIdx: 3
         },
       },
     ],
   },
-  // {
-  //   path: "/404",
-  //   name: "notFound",
-  //   component: () =>
-  //     import(/* webpackChunkName: "notFound" */ "@/views/NotFound.vue"),
-  //   meta: {
-  //     title: "404 Not Found",
-  //   },
-  // },
+  {
+    path: "/404",
+    name: "notFound",
+    component: () =>
+      import(/* webpackChunkName: "notFound" */ "@/views/NotFound.vue"),
+    meta: {
+      title: "404 Not Found",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -63,16 +67,18 @@ const router = createRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.title) {
-//     document.title = to.meta.title;
-//   }
+router.beforeEach((to, from, next) => {
+  sessionStorage.setItem('menuIdx',to.meta.menuIdx);
 
-//   if (!to.matched.length) {
-//     next("/404");
-//   } else {
-//     next();
-//   }
-// });
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+
+  if (!to.matched.length) {
+    next("/404");
+  } else {
+    next();
+  }
+});
 
 export default router;

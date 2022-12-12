@@ -9,6 +9,7 @@ createApp(App)
 .use(dispatchEventStorage)
 .mount('#app')
 
+// 跳轉至頂
 router.afterEach((to, from, next) => {
 	window.scrollTo(0, 0);
 });

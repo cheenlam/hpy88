@@ -7,7 +7,11 @@
         </router-link>
         <div class="hd_menu">
           <ul>
-            <li v-for="item in topMenu" :key="item.menuTitle">
+            <li
+              v-for="(item, index) in topMenu"
+              :key="index"
+              :class="{ on: menuIdx == index }"
+            >
               <router-link :to="item.link"
                 ><span>{{ item.menuTitle }}</span></router-link
               >
@@ -27,16 +31,9 @@
 
 <script setup>
 import { getTopMenu } from "@/api/api";
-import { onMounted, ref } from "vue";
+import { onMounted, ref,nextTick } from "vue";
 const topMenu = ref([]);
-
-// 立即置頂
-// const goTop = () => {
-//   document.scroll({
-//     top: 0,
-//   });
-// };
-
+const menuIdx = ref(0);
 
 const getMenu = () => {
   getTopMenu().then(function (response) {
@@ -44,8 +41,22 @@ const getMenu = () => {
   });
 };
 
+// 修改menu狀態
+const chgMenuIdx = () => {
+  menuIdx.value = sessionStorage.getItem('menuIdx');
+}
+
 const init = onMounted(() => {
   getMenu();
+  chgMenuIdx();
+  // 監聽
+  window.addEventListener("setItemEvent", (e) => {
+    if (e.key == "menuIdx") {
+      nextTick(() => {
+        chgMenuIdx();
+      });
+    }
+  });
 });
 </script>
 
@@ -91,6 +102,11 @@ const init = onMounted(() => {
         display: flex;
         align-items: center;
         cursor: pointer;
+        a {
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
         span {
           transition: color 0.5s;
           font-weight: bold;
@@ -154,31 +170,31 @@ const init = onMounted(() => {
 }
 
 @include rwd(750) {
-  .hd_left{
-    .hd_menu{
+  .hd_left {
+    .hd_menu {
       display: none;
     }
   }
 }
 
 @include rwd(500) {
-  .header{
-    .inner{
+  .header {
+    .inner {
       padding: 0;
       height: auto;
       flex-direction: column;
     }
-    .hd_left{
+    .hd_left {
       padding: 5px 10px;
     }
-    .hd_right{
+    .hd_right {
       width: 100%;
-      li{
+      li {
         flex: 1;
         display: flex;
         justify-content: center;
         border-radius: 0;
-        & + li{
+        & + li {
           margin-left: 0;
         }
       }
