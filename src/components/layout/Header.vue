@@ -29,6 +29,15 @@
 import { getTopMenu } from "@/api/api";
 import { onMounted, ref } from "vue";
 const topMenu = ref([]);
+
+// 立即置頂
+// const goTop = () => {
+//   document.scroll({
+//     top: 0,
+//   });
+// };
+
+
 const getMenu = () => {
   getTopMenu().then(function (response) {
     topMenu.value = response;

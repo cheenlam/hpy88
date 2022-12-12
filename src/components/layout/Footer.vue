@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" ref="footRef">
     <div class="inner">
       <!-- 外部連結 + 推薦 -->
       <div class="ft_plat">
@@ -99,10 +99,15 @@
 
 
 <script setup>
-import {} from "@/api/api";
 import { onMounted, ref } from "vue";
+const emit = defineEmits(['reFootH'])
+const footRef = ref(null);
 
-const init = onMounted(() => {});
+const init = onMounted(() => {
+  emit("reFootH", footRef.value.clientHeight);
+
+  // console.log(footRef.value.clientHeight)
+});
 </script>
 
 <style lang="scss" scoped>

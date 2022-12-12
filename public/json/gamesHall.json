@@ -3,59 +3,59 @@
         "live": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/live-ab.webp"
+                "imgSrc": "live-ab"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/live-dg.webp"
+                "imgSrc": "live-dg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/live-sa.webp"
+                "imgSrc": "live-sa"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/live-wm.webp"
+                "imgSrc": "live-wm"
             }
         ],
         "sport": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/sport-super.webp"
+                "imgSrc": "sport-super"
             }
         ],
         "slot": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-bng.webp"
+                "imgSrc": "slot-bng"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-bwin.webp"
+                "imgSrc": "slot-bwin"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-dt.webp"
+                "imgSrc": "slot-dt"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-gr.webp"
+                "imgSrc": "slot-gr"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-play.webp"
+                "imgSrc": "slot-play"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-rsg.webp"
+                "imgSrc": "slot-rsg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-rtg.webp"
+                "imgSrc": "slot-rtg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/max/slot-sp.webp"
+                "imgSrc": "slot-sp"
             }
         ]
     },
@@ -63,59 +63,59 @@
         "live": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/live-ab.webp"
+                "imgSrc": "live-ab"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/live-dg.webp"
+                "imgSrc": "live-dg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/live-sa.webp"
+                "imgSrc": "live-sa"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/live-wm.webp"
+                "imgSrc": "live-wm"
             }
         ],
         "sport": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/sport-super.webp"
+                "imgSrc": "sport-super"
             }
         ],
         "slot": [
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-bng.webp"
+                "imgSrc": "slot-bng"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-bwin.webp"
+                "imgSrc": "slot-bwin"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-dt.webp"
+                "imgSrc": "slot-dt"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-gr.webp"
+                "imgSrc": "slot-gr"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-play.webp"
+                "imgSrc": "slot-play"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-rsg.webp"
+                "imgSrc": "slot-rsg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-rtg.webp"
+                "imgSrc": "slot-rtg"
             },
             {
                 "link": "",
-                "imgSrc": "/src/assets/images/hallList/min/slot-sp.webp"
+                "imgSrc": "slot-sp"
             }
         ]
     }

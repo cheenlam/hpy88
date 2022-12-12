@@ -93,7 +93,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.live" :key="index">
                   <router-link :to="item.link">
-                    <img :src="item.imgSrc" />
+                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
                   </router-link>
                 </li>
               </ul>
@@ -102,7 +102,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.sport" :key="index">
                   <router-link :to="item.link">
-                    <img :src="item.imgSrc" />
+                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
                   </router-link>
                 </li>
               </ul>
@@ -111,7 +111,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.slot" :key="index">
                   <router-link :to="item.link">
-                    <img :src="item.imgSrc" />
+                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
                   </router-link>
                 </li>
               </ul>
@@ -227,19 +227,27 @@ const screenW = ref(null);
 const hallSel = ref(0);
 const hallList = reactive({ live: "", sport: "", slot: "" });
 
+const hallSort = ref(null)
 const setHallList = () => {
   getHallList().then((res) => {
     if (screenW.value > 740) {
       hallList.live = res.max.live;
       hallList.sport = res.max.sport;
       hallList.slot = res.max.slot;
+      hallSort.value = 'max';
     } else {
       hallList.live = res.min.live;
       hallList.sport = res.min.sport;
       hallList.slot = res.min.slot;
+      hallSort.value = 'min';
     }
   });
 };
+
+const getAssetsFile = (sort,url) => {
+  return new URL(`/src/assets/images/hallList/${sort}/${url}.webp`, import.meta.url).href;
+}
+
 
 watch(
   () => screenW.value,
