@@ -1,0 +1,22 @@
+[
+    {
+        "menuTitle": "首頁",
+        "link": "/Home"
+    },
+    {
+        "menuTitle": "體育博彩",
+        "link": "/Sports"
+    },
+    {
+        "menuTitle": "真人娛樂",
+        "link": "Casino"
+    },
+    {
+        "menuTitle": "電子遊戲",
+        "link": "Computer"
+    },
+    {
+        "menuTitle": "優惠活動",
+        "link": ""
+    }
+]

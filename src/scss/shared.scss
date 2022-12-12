@@ -1,0 +1,145 @@
+// 共用設定
+.color-r {
+    color: #f00;
+}
+
+.no-data {
+    visibility: hidden;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.icon-add {
+    width: 17px;
+    height: 17px;
+    background: url(/img/icons/fave.webp) no-repeat center / cover;
+    cursor: pointer;
+    &.sel {
+        background-image: url(/img/icons/fave_sel.png);
+    }
+}
+
+// 運動種類圖標
+.games-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background: url(/img/sportMark.webp)-972.3px 0 no-repeat;
+    // 棒球
+    &.sp1 {
+        background-position: -36px 0;
+    }
+    // 籃球
+    &.sp2 {
+        background-position: -54.6px 0;
+    }
+    // 拳擊
+    &.sp3 {
+        background-position: -91px 0;
+    }
+    // 板球
+    &.sp4 {
+        background-position: -126px 0;
+    }
+    // 飛鏢
+    &.sp5 {
+        background-position: -180px 0;
+    }
+    // 美式足球
+    &.sp6 {
+        background-position: -252px 0;
+    }
+    // 高爾夫球
+    &.sp7 {
+        background-position: -288px 0;
+    }
+    // 手球
+    &.sp8 {
+        background-position: -306px 0;
+    }
+    // 冰球
+    &.sp9 {
+        background-position: -324px 0;
+    }
+    // 混合武術
+    &.sp10 {
+        background-position: -378.3px 0;
+    }
+    // 英式橄欖球聯盟 & 英式橄欖球聯賽
+    &.sp11 {
+        background-position: -450.14px 0;
+    }
+    // 英式撞球
+    &.sp12 {
+        background-position: -468px 0;
+    }
+    // 足球
+    &.sp13 {
+        background-position: -486.5px 0;
+    }
+    // 網球
+    &.sp14 {
+        background-position: -541px 0;
+    }
+    // 乒乓球
+    &.sp15 {
+        background-position: -522px 0;
+    }
+    // 排球
+    &.sp16 {
+        background-position: -559px 0;
+    }
+    // 澳式足球
+    &.sp17 {
+        background-position: -613px 0;
+    }
+    // 腳踏車
+    &.sp18 {
+        background-position: -630px 0;
+    }
+    // 一級方程式
+    &.sp19 {
+        background-position: -812px 0;
+    }
+    // 田徑賽
+    &.sp20 {
+        background-position: -830px 0;
+    }
+}
+
+
+$oddsCont: (
+    live: (
+        10: #531e03,
+        09: #ff6600,
+        08: #fd8b5c,
+        07: #f0cbb3,
+        06: #ffdbc3,
+    ),
+    generally: (
+        10: #132848,
+        09: #525c6e,
+        08: #e1e1e1,
+        07: #f1f1f1,
+    ),
+    refresh: #fc4a0a,
+);
+
+// 注單狀況改變
+$betState: (
+    close : #ff5b5b,
+    reopen : #ff8c3f,
+    change : #65a7fd,
+);
+
+
+$hdmenu:(
+    focus:#ff8a00,
+    bgc:#021a5e,
+);
+
+

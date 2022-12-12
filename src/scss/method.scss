@@ -1,0 +1,95 @@
+// 定位position參數
+@mixin pos($direction, $val...) {
+    $result: ();
+    $data: to-upper-case($direction);
+    @for $i from 1 through str-length($data) {
+        $result: append($result, str-slice($data, $i, $i));
+        #{pos-chtext(nth($result, $i))}: #{if(length($val) ==1, $val, nth($val, $i))};
+    }
+}
+
+@function pos-chtext($data) {
+    @if $data== "T" {
+        @return top;
+    } @else if $data== "R" {
+        @return right;
+    } @else if $data== "B" {
+        @return bottom;
+    } @else if $data== "L" {
+        @return left;
+    }
+}
+
+
+// 圖片替換文字
+@mixin imgToTxt {
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+// 取消預設樣式
+@mixin fullNone {
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+// 文字斷行顯示點點點(參數輸入行數)
+@mixin txtChip($row) {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $row;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+// RWD設定
+@mixin rwd($data){
+    @media screen and (max-width: #{$data}px){
+        @content;
+    }
+}
+
+
+// 判斷是否能hover(手機或Pc)
+@mixin hover {
+    @media (any-hover: hover) {
+        @content;
+    }
+}
+
+// 行動裝置專屬設定
+@mixin phone {
+    @media (pointer: coarse),
+    (-moz-touch-enabled: 1),
+    screen and (pointer: fine) and (min-resolution: 2dppx) and (max-width: 1023px){
+        @content;
+    }
+}
+
+// 將純色背景色轉成rgba
+@mixin background-opacity($color, $opacity) {
+    background: $color;
+    background: rgba($color, $opacity);
+}
+
+// 取多層map變數
+@mixin map-get($style, $val...) {
+    $obj: nth($val,1);
+    @for $i from 2 through length($val){
+        $obj: map-get($obj,nth($val,$i))
+    };
+    #{$style} : #{$obj};
+}
+
+
+@mixin countBar($name,$time,$delay,$num){
+    animation: #{$name $time $delay} forwards linear;
+    @keyframes #{$name}{
+      0%{ transform: rotate(calc(180 / 100 * -100deg));}
+      100%{  transform: rotate(calc(180 / 100 *  #{$num}deg));}
+    }
+  }

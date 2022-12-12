@@ -1,0 +1,122 @@
+{
+    "max": {
+        "live": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/live-ab.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/live-dg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/live-sa.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/live-wm.webp"
+            }
+        ],
+        "sport": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/sport-super.webp"
+            }
+        ],
+        "slot": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-bng.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-bwin.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-dt.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-gr.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-play.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-rsg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-rtg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/max/slot-sp.webp"
+            }
+        ]
+    },
+    "min": {
+        "live": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/live-ab.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/live-dg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/live-sa.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/live-wm.webp"
+            }
+        ],
+        "sport": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/sport-super.webp"
+            }
+        ],
+        "slot": [
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-bng.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-bwin.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-dt.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-gr.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-play.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-rsg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-rtg.webp"
+            },
+            {
+                "link": "",
+                "imgSrc": "/src/assets/images/hallList/min/slot-sp.webp"
+            }
+        ]
+    }
+}

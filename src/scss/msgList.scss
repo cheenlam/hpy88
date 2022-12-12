@@ -1,0 +1,1072 @@
+// 主要資訊
+.formBox {
+    width: 100%;
+    max-width: 1250px;
+    height: 100vh;
+    padding: 15px 10px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    // 表格title
+    @at-root .formTitle {
+        height: 40px;
+        @include map-get(background-color, $oddsCont, live, 09);
+        flex-shrink: 0;
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // 標題
+        .title {
+            height: 100%;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            @include map-get(background-color, $oddsCont, live, 08);
+            flex-shrink: 0;
+        }
+        // 公告種類選擇
+        .selSort {
+            padding-right: 10px;
+            @include map-get(background-color, $oddsCont, live, 09);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            ul {
+                display: flex;
+                align-items: center;
+                li {
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 0 20px;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    @include hover {
+                        &:hover {
+                            background: #ff8959;
+                        }
+                    }
+                    &.active {
+                        background: #ff8959;
+                    }
+                }
+            }
+        }
+        // 頂部工具列
+        .tool {
+            width: 100%;
+            display: flex;
+            padding: 0 10px;
+            justify-content: flex-end;
+        }
+        .icon {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            background: no-repeat top center / cover;
+            & + .icon {
+                margin-left: 12px;
+            }
+            &.ckBox {
+                background-image: url("@/assets/images/icons/checkBox.png");
+                &.on {
+                    background-position: bottom center;
+                }
+            }
+            &.delMail {
+                background-image: url("@/assets/images/icons/delete.png");
+            }
+            &.search {
+                background: no-repeat center / cover;
+                background-image: url("@/assets/images/icons/search.svg");
+                display: none;
+            }
+        }
+    }
+
+    // 搜尋選擇
+    @at-root .selDate {
+        height: 50px;
+        flex-shrink: 0;
+        padding: 0 10px;
+        margin: 3px 0;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        user-select: none;
+        .selectBox {
+            margin-right: 5px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            select {
+                width: 100%;
+                max-width: 130px;
+                height: 35px;
+                padding: 0 20px 0 5px;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                line-height: 20px;
+                color: #616263;
+            }
+            .dataChg {
+                height: 35px;
+                line-height: 35px;
+                padding: 0 10px;
+                color: #999;
+                font-weight: bold;
+                border-radius: 5px;
+                font-size: 14px;
+                background-color: #ebebeb;
+                box-shadow: 0 -2px 2px #8f8f8f inset;
+                cursor: pointer;
+                transition: 0.3s;
+                &:active {
+                    transform: translateY(2px);
+                }
+            }
+        }
+        .inputBox {
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            input {
+                width: 100%;
+                max-width: 130px;
+                height: 35px;
+                padding: 0 5px;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                line-height: 20px;
+                color: #616263;
+            }
+            span {
+                padding: 0 8px;
+                font-size: 14px;
+            }
+        }
+        button {
+            height: 35px;
+            padding: 0 20px;
+            @include fullNone;
+            background-color: #ff6600;
+            box-shadow: 0 -2px 2px #a12503 inset;
+            color: #fff;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: 0.3s;
+            @include hover {
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            transition: 0.3s;
+            &:active {
+                transform: translateY(2px);
+            }
+        }
+    }
+
+    // 訊息列表 (通告 & 信箱)
+    @at-root .msgList {
+        height: calc(100% - 95px);
+        padding: 20px 10px;
+        font-size: 14px;
+        background-color: #fff;
+        .paginator {
+            height: 30px;
+            padding: 0 0 8px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .msg_tb {
+            height: calc(100% - 40px);
+            padding-bottom: 40px;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .noData {
+            width: 100%;
+            padding: 35px 0;
+            text-align: center;
+            color: #7aadf0;
+            letter-spacing: 1px;
+            font-weight: bold;
+            .icon {
+                width: 80px;
+                margin: 0 auto 5px;
+            }
+        }
+
+        table {
+            width: 100%;
+            th {
+                padding: 8px 5px;
+                @include map-get(background-color, $oddsCont, live, 08);
+                color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                position: relative;
+                & + th {
+                    &::before {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        background-color: #fff;
+                        position: absolute;
+                        @include pos(tl, 0);
+                    }
+                }
+            }
+            td {
+                min-width: 120px;
+                padding: 0 10px;
+                color: #777;
+                opacity: 0.9;
+                &.time {
+                    text-align: center;
+                }
+            }
+        }
+        .msg_title {
+            font-weight: bold;
+            .subject {
+                display: flex;
+                align-items: center;
+                p {
+                    justify-content: flex-start;
+                }
+            }
+
+            .state {
+                width: 60px;
+                margin-right: 10px;
+                font-style: 0;
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+            }
+            .mainSel {
+                width: 22px;
+                height: 22px;
+                background: no-repeat url("@/assets/images/icons/checkBox.png") top center / cover;
+                &.on {
+                    background-position: bottom center;
+                }
+            }
+            .isRead {
+                width: 22px;
+                height: 22px;
+                margin-left: 3px;
+                background: no-repeat url("@/assets/images/icons/letter.svg") center / cover;
+                opacity: 0.8;
+                &.on {
+                    background-image: url("@/assets/images/icons/letter_open.svg");
+                }
+            }
+        }
+        .msg_main {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 5px #763216;
+        }
+        .itemMsg {
+            cursor: pointer;
+            user-select: none;
+            @include map-get(background-color, $oddsCont, generally, 07);
+            &:nth-child(4n) {
+                @include map-get(background-color, $oddsCont, generally, 08);
+            }
+            p {
+                width: 100%;
+                padding: 12px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            span {
+                @include txtChip(1);
+            }
+        }
+        .itemCnt {
+            line-height: 20px;
+            position: relative;
+            td {
+                padding: 0 0 10px;
+            }
+            li {
+                width: 100%;
+                margin-top: 15px;
+                padding-top: 5px;
+                border: 1px solid #c5c5c5;
+                position: relative;
+                &:nth-child(2) {
+                    p {
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+            .itemCnt_title {
+                padding: 0 10px;
+                position: absolute;
+                @include pos(tl, -10px, 10px);
+                background-color: #fff;
+                font-size: 14px;
+                color: #999;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            p {
+                padding: 8px 10px;
+            }
+        }
+    }
+
+    // 下注列表 (投注紀錄)
+    @at-root .betList {
+        height: calc(100% - 95px);
+        padding: 20px 10px;
+        font-size: 14px;
+        background-color: #fff;
+
+        .paginator {
+            height: 30px;
+            padding: 0 0 8px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .bet_tb {
+            height: calc(100% - 40px);
+            padding-bottom: 40px;
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .noData {
+            width: 100%;
+            padding: 35px 0;
+            text-align: center;
+            color: #7aadf0;
+            letter-spacing: 1px;
+            font-weight: bold;
+            .icon {
+                width: 80px;
+                margin: 0 auto 5px;
+            }
+        }
+        table {
+            width: 100%;
+            th {
+                padding: 8px 5px;
+                @include map-get(background-color, $oddsCont, live, 08);
+                color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                position: relative;
+                & + th {
+                    &::before {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        background-color: #fff;
+                        position: absolute;
+                        @include pos(tl, 0);
+                    }
+                }
+            }
+            td {
+                padding: 0 10px;
+                color: #777;
+                opacity: 0.9;
+                text-align: center;
+            }
+        }
+        .tb_head {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 5px #763216;
+        }
+        .itemMsg {
+            height: 55px;
+            user-select: none;
+            td {
+                cursor: pointer;
+                border: 1px solid #c5c5c5;
+            }
+
+            &:nth-child(2n) {
+                @include map-get(background-color, $oddsCont, generally, 07);
+            }
+        }
+    }
+
+    // 帳目列表
+    @at-root .a_cList {
+    height: calc(100% - 95px);
+    padding: 20px 10px;
+    font-size: 14px;
+    background-color: #fff;
+    .paginator {
+      padding: 0 0 8px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .a_c_tb {
+      height: calc(100% - 50px);
+      padding-bottom: 100px;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .noData {
+      width: 100%;
+      padding: 40px 0;
+      text-align: center;
+      color: #666;
+      letter-spacing: 1px;
+    }
+    table {
+      width: 100%;
+      th {
+        padding: 8px 5px;
+        @include map-get(background-color, $oddsCont, live, 08);
+        color: #fff;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        position: relative;
+        & + th {
+          &::before {
+            content: "";
+            width: 1px;
+            height: 100%;
+            background-color: #fff;
+            position: absolute;
+            @include pos(tl, 0);
+          }
+        }
+      }
+      td {
+        padding: 0 10px;
+        color: #777;
+        opacity: 0.9;
+        text-align: center;
+      }
+    }
+    .tb_head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      box-shadow: 0 2px 5px #763216;
+    }
+    .itemMsg {
+      height: 55px;
+      user-select: none;
+      td {
+        cursor: pointer;
+        border: 1px solid #c5c5c5;
+      }
+
+      &:nth-child(2n) {
+        @include map-get(background-color, $oddsCont, generally, 07);
+      }
+    }
+  }
+
+    // ====== RWD設置 ======
+    @include rwd(700) {
+        .msgList {
+            padding: 10px;
+            table {
+                display: flex;
+                flex-direction: column;
+            }
+            .noData {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .msg_main {
+                display: flex;
+                flex-wrap: wrap;
+                th {
+                    width: 50%;
+                    &:nth-child(1) {
+                        width: 100%;
+                        border-bottom: 1px solid #fff;
+                    }
+                    &:nth-child(2)::before {
+                        display: none;
+                    }
+                }
+            }
+            .itemMsg {
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+                border: 1px solid #ccc;
+                &:nth-child(n + 3) {
+                    margin-top: 8px;
+                }
+                .msg_title {
+                    width: 100%;
+                }
+
+                .time {
+                    width: 50%;
+                    @include map-get(background-color, $oddsCont, live, 08);
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p {
+                        width: 100%;
+                        padding: 8px 0;
+                        font-weight: bold;
+                    }
+                    & + .time {
+                        position: relative;
+                        &::before {
+                            content: "";
+                            width: 1px;
+                            height: 100%;
+                            background-color: #fff;
+                            position: absolute;
+                            @include pos(tl, 0);
+                        }
+                    }
+                }
+            }
+            .itemCnt {
+                td {
+                    display: flex;
+                }
+                ul {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @include rwd(610) {
+        .formTitle {
+            .icon {
+                &.search {
+                    display: block;
+                }
+            }
+        }
+        .selDate {
+            width: calc(100% - 10px);
+            height: auto;
+            padding: 25px 10px 15px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: unset;
+            margin: auto;
+            box-shadow: 2px 2px 4px #000;
+            border-radius: 5px;
+            position: absolute;
+            @include pos(tlr, 60px, 0, 0);
+            z-index: 10;
+
+            display: none;
+            &.on {
+                display: flex;
+                transform-origin: top center;
+                animation: openSel .3s forwards;
+            }
+            .inputBox {
+                margin: 0 0 20px;
+                input {
+                    max-width: 100%;
+                    flex: 1;
+                    color: #616263;
+                }
+            }
+            .selectBox {
+                margin: 0 0 5px;
+                select {
+                    max-width: 100%;
+                    flex: 1;
+                    color: #616263;
+                }
+            }
+        }
+        .msgList {
+            height: 100%;
+        }
+        .betList {
+            height: calc(100% - 40px);
+            table {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            .tb_head {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                th {
+                    &:nth-child(n + 1) {
+                        width: calc(100% / 2);
+                    }
+                    &:nth-child(n + 3) {
+                        border-top: 1px solid #fff;
+                    }
+                    &:nth-child(3) {
+                        &::before {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .itemMsg {
+                width: 100%;
+                margin-top: 3px;
+                height: unset;
+                display: flex;
+                flex-wrap: wrap;
+                border: 1px solid #c5c5c5;
+                &:nth-child(2) {
+                    margin-top: 0;
+                }
+                td {
+                    padding: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: none;
+                    &:nth-child(n + 1) {
+                        width: calc(100% / 2);
+                        position: relative;
+                        &:not(:nth-child(odd)) {
+                            position: relative;
+                            &::before {
+                                content: "";
+                                width: 1px;
+                                height: calc(100% - 15px);
+                                margin: auto;
+                                background-color: #c5c5c5;
+                                position: absolute;
+                                @include pos(tbl, 0);
+                            }
+                        }
+                    }
+                    &:nth-child(n + 3) {
+                        &::after {
+                            content: "";
+                            width: calc(100% - 15px);
+                            height: 1px;
+                            margin: auto;
+                            background-color: #c5c5c5;
+                            position: absolute;
+                            @include pos(tlr, 0);
+                        }
+                    }
+                }
+            }
+            .noData {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+        .a_cList {
+            height: calc(100% - 40px);
+            table {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+            }
+            .tb_head {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              th {
+                &:nth-child(n + 1) {
+                  width: calc(100% / 2);
+                }
+                &:nth-child(n + 3) {
+                  border-top: 1px solid #fff;
+                }
+                &:nth-child(3) {
+                  &::before {
+                    display: none;
+                  }
+                }
+              }
+            }
+            .itemMsg {
+              width: 100%;
+              margin-top: 3px;
+              height: unset;
+              display: flex;
+              flex-wrap: wrap;
+              border: 1px solid #c5c5c5;
+              &:nth-child(2) {
+                margin-top: 0;
+              }
+              td {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: none;
+                &:nth-child(n + 1) {
+                  width: calc(100% / 2);
+                  position: relative;
+                  &:not(:nth-child(odd)) {
+                    position: relative;
+                    &::before {
+                      content: "";
+                      width: 1px;
+                      height: calc(100% - 15px);
+                      margin: auto;
+                      background-color: #c5c5c5;
+                      position: absolute;
+                      @include pos(tbl, 0);
+                    }
+                  }
+                }
+                &:nth-child(n + 3) {
+                  &::after {
+                    content: "";
+                    width: calc(100% - 15px);
+                    height: 1px;
+                    margin: auto;
+                    background-color: #c5c5c5;
+                    position: absolute;
+                    @include pos(tlr, 0);
+                  }
+                }
+              }
+            }
+            .noData {
+              display: flex;
+              flex-direction: column;
+            }
+          }
+    }
+
+    // ====== 移動裝置設置 ======
+    @include phone {
+        .msgList {
+            .msg_tb {
+                padding-bottom: calc(160px + constant(safe-area-inset-bottom));
+                padding-bottom: calc(160px + env(safe-area-inset-bottom));
+            }
+        }
+
+        .betList {
+            .bet_tb {
+                padding-bottom: calc(160px + constant(safe-area-inset-bottom));
+                padding-bottom: calc(160px + env(safe-area-inset-bottom));
+            }
+        }
+
+        .statementsList {
+            .card {
+              padding-bottom: calc(160px + constant(safe-area-inset-bottom));
+              padding-bottom: calc(160px + env(safe-area-inset-bottom));
+            }
+          }
+    }
+
+    @keyframes openSel {
+        0%{
+            opacity: 0;
+            transform: scaleY(0.2);
+        }
+        100%{
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+}
+
+// 注單詳細資訊彈窗
+.betDetailed {
+    width: 100%;
+    height: 100%;
+    padding: 20px 10px;
+    position: fixed;
+    @include pos(tl, 0);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+
+    .boxClose {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        @include pos(tl, 0);
+    }
+    .innerBox {
+        width: 100%;
+        max-width: 1000px;
+        padding-bottom: 10px;
+        background-color: #fff;
+        position: relative;
+        border-radius: 5px;
+        background-color: #132848;
+        box-shadow: 2px 2px 6px rgb(0 0 0 / 70%);
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+    }
+    .dlHeader {
+        height: 40px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+        .closeBtn {
+            width: 22px;
+            height: 22px;
+            position: relative;
+            background-color: #455166;
+            border-radius: 50%;
+            cursor: pointer;
+            &::after,
+            &::before {
+                content: "";
+                width: calc(100% - 8px);
+                height: 1px;
+                margin: auto;
+                background-color: #fff;
+                position: absolute;
+                @include pos(tbrl, 0);
+            }
+            &::after {
+                transform: rotate(45deg);
+            }
+            &::before {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    // 取消注單按鈕
+    .cancelBtn {
+        width: calc(100% - 15px);
+        padding: 8px 10px;
+        margin: auto;
+        background-color: #fff;
+        button {
+            min-width: 100px;
+            height: 35px;
+            padding: 0 20px;
+            @include fullNone;
+            background-color: #132848;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+            opacity: 0.8;
+            transition: 0.3s;
+            @include hover {
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .dlCnt {
+        width: calc(100% - 15px);
+        height: 100%;
+        padding: 0px 10px 80px;
+        margin: auto;
+        background-color: #fff;
+        color: #777;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #aaa;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            visibility: hidden;
+        }
+
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
+
+        .top {
+            width: 100%;
+            margin-bottom: 40px;
+            th,
+            td {
+                width: calc(100% / 3);
+                text-align: center;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+            }
+            th {
+                @include map-get(background-color, $oddsCont, live, 08);
+                color: #fff;
+            }
+            td{
+                p{
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+        .list {
+            width: 100%;
+            th,
+            td {
+                width: calc(100% / 3);
+                text-align: center;
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+            th {
+                color: #fff;
+                background-color: #000;
+                &.second {
+                    background-color: #bbb9b9;
+                }
+            }
+            td {
+                &.on {
+                    color: #fff;
+                    background-color: #78d4f0;
+                }
+            }
+        }
+        .minData {
+            display: none;
+            p {
+                display: flex;
+                &::before {
+                    content: attr(data-title);
+                    width: 90px;
+                    height: auto;
+                    margin-right: 8px;
+                    padding: 8px 5px;
+                    background-color: #7cacf5;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    flex-shrink: 0;
+                }
+                & + p {
+                    border-top: 1px solid #e5e5e5;
+                }
+                &.on {
+                    color: #fff;
+                    background-color: #78d4f0;
+                }
+                span {
+                    width: 100%;
+                    height: auto;
+                    padding: 3px 10px 3px 0;
+                    line-height: 20px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+        li + li {
+            margin-top: 20px;
+        }
+
+        @include rwd(700) {
+            .top {
+                margin-bottom: 20px;
+                tr {
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                th,
+                td {
+                    width: 50%;
+                    border-top: none;
+                    &:last-child {
+                        width: 100%;
+                    }
+                    &:nth-child(2) {
+                        border-left: none;
+                    }
+                }
+            }
+            .list {
+                display: none;
+                td {
+                    width: 100%;
+                    padding: 0;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    border: none;
+                    &::before {
+                        content: attr(data-name);
+                        width: 100px;
+                        margin-right: 8px;
+                        padding: 8px 5px;
+                        background-color: #7cacf5;
+                        color: #fff;
+                    }
+                }
+                td + td {
+                    border-top: 1px solid #e5e5e5;
+                }
+            }
+            .minData {
+                display: block;
+            }
+
+            li {
+                border: 1px solid #e5e5e5;
+                & + li {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
