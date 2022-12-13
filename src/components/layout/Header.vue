@@ -157,7 +157,7 @@ const init = onMounted(() => {
       font-weight: bold;
       background: linear-gradient(180deg, #57d7ff 0%, #1e50a6 100%);
       color: #fff;
-      transition: .3s;
+      transition: transform .3s;
       & + li {
         margin-left: 5px;
       }

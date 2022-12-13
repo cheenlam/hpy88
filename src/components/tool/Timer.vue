@@ -1,7 +1,10 @@
 <template>
   <div class="timerBox">
-    <div class="latDay"><p>{{timeVal.day}}</p></div>
-    <div class="latTime">
+    <div class="lastDay">
+        <p>{{timeVal.day}}</p>
+        <span>Day</span>
+    </div>
+    <div class="lastTime">
       <ul>
         <li><p>{{timeVal.hour}}</p></li>
         <li><p>{{timeVal.min}}</p></li>
@@ -13,16 +16,15 @@
   
 <script setup>
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
-const props = defineProps({letTime:''})
+const props = defineProps({lastTime:''})
 
 const timer = ref(null);
-// const letTime = ref("2022-12-30 22:00");
 const timeVal = reactive({
     day:'', hour:'', min:'' ,sec:''
 })
 
 const setTimeShow = () => {
-  const countDownTime = new Date(props.letTime);
+  const countDownTime = new Date(props.lastTime);
   const timeNow = new Date();
   const remain = countDownTime - timeNow;
   timeVal.sec = String(Math.floor(remain / 1000) % 60).padStart(2,'0');
@@ -48,7 +50,6 @@ onBeforeUnmount(() => {
 .timerBox {
   display: flex;
   align-items: center;
-  color: #6897e9;
   p {
     min-width: 35px;
     height: 25px;
@@ -60,14 +61,20 @@ onBeforeUnmount(() => {
     text-align: center;
     font-weight: bold;
   }
-  @at-root .latDay {
-    margin-right: 8px;
-    p{
+  @at-root .lastDay {
+    display: flex;
+    align-items: center; 
+    p{  
         background: linear-gradient(180deg, #faf0ae, #e2bf5f 70% ,#faf3c3);
         color: #555;
     }
+    span{
+        padding: 0 8px 0 3px;
+        color: #999;
+        font-size: 12px;
+    }
   }
-  @at-root .latTime {
+  @at-root .lastTime {
     ul {
       display: flex;
       align-items: center;
@@ -81,6 +88,7 @@ onBeforeUnmount(() => {
         content: ":";
         padding: 0 2px;
         font-weight: bold;
+        color: #6897e9;
       }
     }
   }

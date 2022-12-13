@@ -9,7 +9,7 @@
               />
           </div>
           <div class="msg">
-            <Timer letTime="2023-01-15 00:00"></Timer>
+            <Timer lastTime="2023-01-15 00:00"></Timer>
             <div class="title">TURNAMEN JUMLAH TARUHAN PIALA DUNIA 2022</div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
@@ -26,7 +26,7 @@
               />
           </div>
           <div class="msg">
-            <Timer letTime="2022-12-30 00:00"></Timer>
+            <Timer lastTime="2022-12-30 00:00"></Timer>
             <div class="title">TURNAMEN JUMLAH TARUHAN PIALA DUNIA 2022</div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
@@ -43,7 +43,7 @@
               />
           </div>
           <div class="msg">
-            <Timer letTime="2030-02-30 00:00"></Timer>
+            <Timer lastTime="2030-02-30 00:00"></Timer>
             <div class="title">TURNAMEN JUMLAH TARUHAN PIALA DUNIA 2022</div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
@@ -60,7 +60,7 @@
               />
           </div>
           <div class="msg">
-            <Timer letTime="2024-09-12 22:00"></Timer>
+            <Timer lastTime="2024-09-12 22:00"></Timer>
             <div class="title">TURNAMEN JUMLAH TARUHAN PIALA DUNIA 2022</div>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
