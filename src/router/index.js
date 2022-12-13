@@ -4,6 +4,8 @@ import Home from "@/views/Home.vue";
 import Sports from "@/views/Sports.vue";
 import Casino from "@/views/Casino.vue";
 import Computer from "@/views/Computer.vue";
+import Activity from "@/views/Activity.vue";
+
 
 
 const routes = [
@@ -47,6 +49,15 @@ const routes = [
         meta: {
           title: "Computer page title",
           menuIdx: 3
+        },
+      },
+      {
+        path: "Activity",
+        name: "Activity",
+        component: Activity,
+        meta: {
+          title: "Activity page title",
+          menuIdx: 4
         },
       },
     ],

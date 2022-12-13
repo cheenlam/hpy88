@@ -30,17 +30,12 @@
         >
           <a class="carousel-img">
             <img
+              src="https://www.bk8usd.com/public/promotion/20221129030415-d72796c7-0a9a-4b57-a6ef-e0be6fa5e0e1.png"
+            />
+          </a>
+          <a class="carousel-img">
+            <img
               src="https://www.bk8usd.com/public/promotion/20221109071642-8958a11f-0c67-4ed5-a84b-c634ba763244.png"
-            />
-          </a>
-          <a class="carousel-img">
-            <img
-              src="https://www.bk8usd.com/public/promotion/20221026200507-fcd9e3a6-fbaa-4e5c-a393-9c59697d1605.png"
-            />
-          </a>
-          <a class="carousel-img">
-            <img
-              src="https://www.bk8usd.com/public/promotion/20221101075132-55d1b01f-29bf-41d7-b789-12f4d154ccdc.jpg"
             />
           </a>
           <a class="carousel-img">
@@ -50,7 +45,7 @@
           </a>
           <a class="carousel-img">
             <img
-              src="https://www.bk8usd.com/public/promotion/20221129030415-d72796c7-0a9a-4b57-a6ef-e0be6fa5e0e1.png"
+              src="https://www.bk8usd.com/public/promotion/20221026200507-fcd9e3a6-fbaa-4e5c-a393-9c59697d1605.png"
             />
           </a>
         </n-carousel>
@@ -93,7 +88,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.live" :key="index">
                   <router-link :to="item.link">
-                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
+                    <img :src="getAssetsFile(hallSort, item.imgSrc)" />
                   </router-link>
                 </li>
               </ul>
@@ -102,7 +97,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.sport" :key="index">
                   <router-link :to="item.link">
-                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
+                    <img :src="getAssetsFile(hallSort, item.imgSrc)" />
                   </router-link>
                 </li>
               </ul>
@@ -111,7 +106,7 @@
               <ul>
                 <li v-for="(item, index) in hallList.slot" :key="index">
                   <router-link :to="item.link">
-                    <img :src="getAssetsFile(hallSort,item.imgSrc)">
+                    <img :src="getAssetsFile(hallSort, item.imgSrc)" />
                   </router-link>
                 </li>
               </ul>
@@ -227,27 +222,29 @@ const screenW = ref(null);
 const hallSel = ref(0);
 const hallList = reactive({ live: "", sport: "", slot: "" });
 
-const hallSort = ref(null)
+const hallSort = ref(null);
 const setHallList = () => {
   getHallList().then((res) => {
     if (screenW.value > 740) {
       hallList.live = res.max.live;
       hallList.sport = res.max.sport;
       hallList.slot = res.max.slot;
-      hallSort.value = 'max';
+      hallSort.value = "max";
     } else {
       hallList.live = res.min.live;
       hallList.sport = res.min.sport;
       hallList.slot = res.min.slot;
-      hallSort.value = 'min';
+      hallSort.value = "min";
     }
   });
 };
 
-const getAssetsFile = (sort,url) => {
-  return new URL(`/src/assets/images/hallList/${sort}/${url}.webp`, import.meta.url).href;
-}
-
+const getAssetsFile = (sort, url) => {
+  return new URL(
+    `/src/assets/images/hallList/${sort}/${url}.webp`,
+    import.meta.url
+  ).href;
+};
 
 watch(
   () => screenW.value,
@@ -592,96 +589,96 @@ onMounted(() => {
 }
 
 @include rwd(740) {
-  .gamesHall{
+  .gamesHall {
     padding-bottom: 10vw;
-    .hallCnt{
+    .hallCnt {
       display: flex;
     }
-    .selSort{
+    .selSort {
       margin-right: 10px;
-      ul{
+      ul {
         flex-direction: column;
       }
-      li{
+      li {
         min-width: 100px;
       }
     }
-    .gameStage{
+    .gameStage {
       padding: 0;
       background: unset;
     }
-    .listBox_live{
+    .listBox_live {
       padding: 0;
-      li{
-        a{
+      li {
+        a {
           width: 100%;
         }
-        img{
+        img {
           max-width: unset;
           filter: drop-shadow(2px 2px 4px #060a164d);
         }
       }
     }
-    .listBox_sport{
+    .listBox_sport {
       padding: 0;
-      li{
+      li {
         width: 100%;
-        img{
+        img {
           max-width: 100%;
           filter: drop-shadow(2px 2px 4px #060a164d);
         }
       }
     }
-    .listBox_slot{
-      ul{
+    .listBox_slot {
+      ul {
         gap: 10px;
       }
-      li{
+      li {
         width: calc(100% / 2 - 5px);
         max-width: unset;
         padding-top: 0;
-        img{
+        img {
           filter: drop-shadow(2px 2px 4px #060a164d);
         }
       }
     }
   }
-  .quality{
-    .countBar{
+  .quality {
+    .countBar {
       flex-wrap: wrap;
-      .item{
+      .item {
         width: calc(100% / 2);
       }
-      .barCnt{
+      .barCnt {
         margin: auto;
       }
     }
   }
 }
 
-@include rwd(700){
-  .titleLine{
+@include rwd(700) {
+  .titleLine {
     padding: 2vw 30px;
-    p{
+    p {
       font-size: 4.5vw;
       padding: 0 4vw;
     }
   }
-  .manyCarousel{
+  .manyCarousel {
     padding-bottom: 8vw;
   }
 
-  .quality{
-    .list{
-      ul{
+  .quality {
+    .list {
+      ul {
         gap: 10px;
       }
-      li{
+      li {
         width: 100%;
       }
     }
   }
-} 
+}
 </style>
 
   
