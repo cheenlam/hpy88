@@ -53,14 +53,19 @@ onBeforeUnmount(() => {
     min-width: 35px;
     height: 25px;
     padding: 0 8px;
-    line-height: 25px;
+    line-height: 27px;
     color: #fff;
     border-radius: 3px;
     background: linear-gradient(180deg, #57d7ff, #3f6fc2 70%, #95e6ff);
     text-align: center;
+    font-weight: bold;
   }
   @at-root .latDay {
-    margin-right: 10px;
+    margin-right: 8px;
+    p{
+        background: linear-gradient(180deg, #faf0ae, #e2bf5f 70% ,#faf3c3);
+        color: #555;
+    }
   }
   @at-root .latTime {
     ul {
