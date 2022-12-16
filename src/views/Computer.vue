@@ -342,11 +342,11 @@ onMounted(() => {
         cursor: pointer;
         transition: transform 0.3s;
         & + li {
-          margin-top: 5px;
+          margin-top: 8px;
         }
         &.on {
           filter: grayscale(0%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
-          transform: translateY(-2px);
+          transform: scale(1.05);
         }
       }
     }
@@ -358,6 +358,15 @@ onMounted(() => {
       li {
         width: calc(100% / 6);
         padding: 0 3px 10px;
+        @include rwd(1070) {
+          width: calc(100% / 5);
+        }
+        @include rwd(890) {
+          width: calc(100% / 4);
+        }
+        @include rwd(700) {
+          width: calc(100% / 3);
+        }
       }
       p {
         padding: 0 5px;
@@ -366,61 +375,29 @@ onMounted(() => {
         font-size: 12px;
       }
     }
-  }
-}
 
-@include rwd(1070) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 5);
+    @include phone {
+      .gameInner {
+        flex-direction: column;
       }
-    }
-  }
-}
-
-@include rwd(890) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 4);
+      .gameSel {
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        overflow: scroll;
+        ul {
+          display: flex;
+        }
+        li {
+          min-width: 80px;
+        }
+        li + li {
+          margin: 0 0 0 10px;
+        }
       }
-    }
-  }
-}
-
-@include rwd(700) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 3);
+      .gameList {
+        max-height: 50vh;
+        overflow: auto;
       }
-    }
-  }
-}
-
-@include phone {
-  .gameBox {
-    .gameInner {
-      flex-direction: column;
-    }
-    .gameSel{
-      padding-bottom: 10px;
-      margin-bottom: 5px;
-      overflow: scroll;
-      ul{
-        display: flex;
-      }
-      li{
-        min-width: 80px;
-      }
-      li + li{
-        margin: 0 0 0 10px;
-      }
-    }
-    .gameList{
-      max-height: 50vh;
-      overflow: auto;
     }
   }
 }

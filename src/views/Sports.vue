@@ -24,138 +24,15 @@
         <img src="@/assets/images/at_sport/rupture.png" />
       </div>
     </div>
-
     <div class="gameBox">
-      <div class="pageTag"><Paginator :nowPage="1" :totalPage="2" /></div>
-      <div class="inner">
-        <div class="gameSel">
-          <ul>
-            <li class="on">SUPER体育</li>
-          </ul>
+      <div class="introduce">
+        <div class="title">
+          <p>体育赛事</p>
+          <span>SPORTS</span>
         </div>
-        <div class="gameList">
-          <ul>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/01.png" />
-                <p>钱龙-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/02.png" />
-                <p>黑狼-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/03.png" />
-                <p>满贯金财神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/04.png" />
-                <p>轰炸糖果</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/05.png" />
-                <p>快樂鳥嘉年華</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/06.png" />
-                <p>黃金特快車</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/07.png" />
-                <p>金禧迎狮-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/08.png" />
-                <p>快乐鱼</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/09.png" />
-                <p>淘金乐-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/10.png" />
-                <p>皇朝盛世2-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/11.png" />
-                <p>致命毒苹果-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/12.png" />
-                <p>诸神荣耀</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/13.png" />
-                <p>采珠潜水员2-藏宝箱</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/14.png" />
-                <p>烈日女神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/15.png" />
-                <p>钱滚滚圣甲虫</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/16.png" />
-                <p>太阳神殿2-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/17.png" />
-                <p>太阳神殿3-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/18.png" />
-                <p>好运金财神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/19.png" />
-                <p>聖甲降臨-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/20.png" />
-                <p>大三元-集鸿运</p>
-              </router-link>
-            </li>
-          </ul>
+        <div class="ann">每月提供上万场体育赛事投注，经典赛事一应俱全。业内赔率最高！覆盖世界各地赛事,让球、大小、半全场、波胆、单双、总入球、连串过关等多元竞猜，让您畅游轻松娱乐投注。</div>
+        <div class="sportSort">
+            <img src="@/assets/images/bg/sportSort.png">
         </div>
       </div>
     </div>
@@ -168,7 +45,6 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
-
 </script>
   <style lang="scss" scoped>
 @import "@/scss/method.scss";
@@ -182,169 +58,123 @@ import Paginator from "@/components/Paginator.vue";
     max-width: 1320px;
     padding: 10px 10px 20px;
     margin: auto;
-    border: 2px solid #fff;
-    border-radius: 8px;
-    background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
-    .pageTag {
-      padding: 10px 5px;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .inner {
-      display: flex;
-      font-size: 14px;
-    }
-    .gameSel {
-      margin-right: 10px;
-      flex-shrink: 0;
-      li {
-        padding: 8px 15px;
-        color: #fff;
-        background: linear-gradient(180deg, #848c94 0%, #cdcdcd 100%);
-        flex: 1;
-        text-align: center;
-        border-radius: 3px;
-        font-weight: bold;
-        cursor: pointer;
-        & + li {
-          margin-top: 5px;
-        }
-        &.on{
-          background: linear-gradient(-180deg, #a1effb, #6eccff, #4295f6);
-        }
-      }
-    }
-    .gameList {
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      li {
-        width: calc(100% / 6);
-        padding: 0 5px 15px;
-      }
-      p {
-        padding: 0 5px;
-        margin-top: 3px;
-        text-align: center;
-        @include txtChip(1);
-      }
-    }
-  }
-}
-@include rwd(1070) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 5);
-      }
-    }
-  }
-}
-@include rwd(890) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 4);
-      }
-    }
-  }
-}
-@include rwd(700) {
-  .gameBox {
-    .gameList {
-      li {
-        width: calc(100% / 3);
-      }
-    }
-  }
-}
+    // border: 2px solid #fff;
+    // border-radius: 8px;
+    // background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
+    // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
 
-.game-sportBox {
-  max-width: 1400px;
-  height: 50vw;
-  max-height: 700px;
-  margin: auto;
-  background: url("@/assets/images/at_sport/sport-bg.webp") no-repeat center
-    bottom / cover;
-  position: relative;
-  overflow: hidden;
-  // 紙片
-  .paper {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    @include pos(tl, 0);
-    span {
+    @at-root .introduce{
+        max-width: 400px;
+        margin: auto;
+        .title{
+            text-align: center;           
+            font-size: 18px;
+            color: #3688cb;
+            letter-spacing: 1px;
+            p{
+                line-height: 28px;
+                font-size: 30px;  
+                color: #285aa1;   
+                font-weight: bold;
+            }
+        }
+        .ann{
+            margin: 10px 0 20px;
+            line-height: 24px;
+            color: #999;
+        }
+        .sportSort{
+            max-width: 300px;
+            margin: auto;
+        }
+    }
+  }
+
+  @at-root .game-sportBox {
+    max-width: 1400px;
+    height: 50vw;
+    max-height: 700px;
+    margin: auto;
+    background: url("@/assets/images/at_sport/sport-bg.webp") no-repeat center
+      bottom / cover;
+    position: relative;
+    overflow: hidden;
+    // 紙片
+    .paper {
       width: 100%;
+      height: 100%;
+      position: absolute;
+      @include pos(tl, 0);
+      span {
+        width: 100%;
+        margin: auto;
+        position: absolute;
+        @include pos(tbrl, 0);
+        opacity: 0;
+        &:nth-child(1) {
+          background: url("@/assets/images/at_sport/paper.png") no-repeat center /
+            cover;
+          animation: paper 8s linear infinite;
+        }
+        &:nth-child(2) {
+          background: url("@/assets/images/at_sport/paper.png") no-repeat 40%
+            50% / cover;
+          animation: paper 8s 4s linear infinite;
+        }
+      }
+    }
+    // 球員
+    .player_01 {
+      width: 85%;
       margin: auto;
       position: absolute;
-      @include pos(tbrl, 0);
-      opacity: 0;
-      &:nth-child(1) {
-        background: url("@/assets/images/at_sport/paper.png") no-repeat center /
-          cover;
-        animation: paper 8s linear infinite;
-      }
-      &:nth-child(2) {
-        background: url("@/assets/images/at_sport/paper.png") no-repeat 40% 50% /
-          cover;
-        animation: paper 8s 4s linear infinite;
-      }
+      @include pos(tlr, 10%, 0, 0);
+      transform: translateX(-42%);
+      opacity: 1;
+      animation: playerMove 1s 0.2s forwards linear,
+        playerMove_02 0.5s 2.5s forwards linear;
     }
-  }
-  // 球員
-  .player_01 {
-    width: 85%;
-    margin: auto;
-    position: absolute;
-    @include pos(tlr, 10%, 0, 0);
-    transform: translateX(-42%);
-    opacity: 1;
-    animation: playerMove 1s 0.2s forwards linear,
-      playerMove_02 0.5s 2.5s forwards linear;
-  }
-  .player_02 {
-    width: 85%;
-    margin: auto;
-    position: absolute;
-    @include pos(tlr, 0);
-    transform: translateX(52%);
-    opacity: 0;
-    animation: playerMove_03 0.5s 2.5s forwards linear;
-  }
-  // 旋風
-  .whirlwind {
-    width: 35%;
-    height: 35%;
-    margin: auto;
-    background: url("@/assets/images/at_sport/whirlwind.png") no-repeat center /
-      cover;
-    position: absolute;
-    @include pos(blr, 20%, 0, 0);
-    animation: whirlwind 1s forwards linear,
-      whirlwind_02 2s 2.5s linear infinite;
-  }
-  // 足球
-  .footBall {
-    width: 40%;
-    margin: auto;
-    position: absolute;
-    @include pos(blr, -0.5%, 0, 0);
-    transform: scale(0.18);
-    animation: footBall 1.5s forwards linear,
-      footBall_02 0.5s 2s forwards linear,
-      footBall_03 0.15s 2.5s infinite linear;
-  }
-  // 破裂
-  .rupture {
-    width: 45%;
-    margin: auto;
-    position: absolute;
-    @include pos(blr, 6%, 0, 0);
-    opacity: 0;
-    animation: rupture 1s 0.6s forwards;
+    .player_02 {
+      width: 85%;
+      margin: auto;
+      position: absolute;
+      @include pos(tlr, 0);
+      transform: translateX(52%);
+      opacity: 0;
+      animation: playerMove_03 0.5s 2.5s forwards linear;
+    }
+    // 旋風
+    .whirlwind {
+      width: 35%;
+      height: 35%;
+      margin: auto;
+      background: url("@/assets/images/at_sport/whirlwind.png") no-repeat center /
+        cover;
+      position: absolute;
+      @include pos(blr, 20%, 0, 0);
+      animation: whirlwind 1s forwards linear,
+        whirlwind_02 2s 2.5s linear infinite;
+    }
+    // 足球
+    .footBall {
+      width: 40%;
+      margin: auto;
+      position: absolute;
+      @include pos(blr, -0.5%, 0, 0);
+      transform: scale(0.18);
+      animation: footBall 1.5s forwards linear,
+        footBall_02 0.5s 2s forwards linear,
+        footBall_03 0.15s 2.5s infinite linear;
+    }
+    // 破裂
+    .rupture {
+      width: 45%;
+      margin: auto;
+      position: absolute;
+      @include pos(blr, 6%, 0, 0);
+      opacity: 0;
+      animation: rupture 1s 0.6s forwards;
+    }
   }
 }
 
