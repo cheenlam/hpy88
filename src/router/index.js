@@ -79,6 +79,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
   sessionStorage.setItem('menuIdx',to.meta.menuIdx);
 
   if (to.meta.title) {

@@ -1,7 +1,8 @@
 <template>
   <Header></Header>
-  <router-view :style="{ minHeight: footH }"></router-view>
-  <Footer @reFootH="getFootH"></Footer>
+  <router-view></router-view>
+  <Footer></Footer>
+ 
   <div class="goTop" @click="goTop()">
     <img src="@/assets/images/icon/anglesUp_w.svg" alt="anglesUp" />
   </div>
@@ -11,12 +12,6 @@
 import Header from "@/components/layout/Header.vue";
 import Footer from "@/components/layout/Footer.vue";
 import { ref, onMounted } from "vue";
-
-const footH = ref(null);
-const getFootH = (val) => {
-  let winH = document.body.clientHeight;
-  footH.value = `${winH - val - 60}px`;
-};
 
 // 滾動置頂
 const goTop = () => {
