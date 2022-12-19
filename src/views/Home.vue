@@ -487,7 +487,7 @@ onMounted(() => {
               border-radius: 120px 0 0 120px;
               border-right-color: transparent;
               transform-origin: center right;
-              transform: rotate(calc(180 / 100 * -100deg));
+              // transform: rotate(calc(180 / 100 * -100deg));
               &.index_01 {
                 @include countBar("index_01_L", 0.8s, 0s, 0);
               }

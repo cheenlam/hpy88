@@ -321,9 +321,9 @@ onMounted(() => {
     padding: 10px 10px 20px;
     margin: auto;
     border: 2px solid #fff;
-    border-radius: 8px;
+    border-radius: 5px;
     background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
     .pageTag {
       padding: 10px 5px;
       display: flex;

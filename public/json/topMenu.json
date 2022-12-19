@@ -1,22 +1,22 @@
 [
     {
-        "menuTitle": "首頁",
+        "menuTitle": "首页",
         "link": "/Home"
     },
     {
-        "menuTitle": "體育博彩",
+        "menuTitle": "体育博彩",
         "link": "/Sports"
     },
     {
-        "menuTitle": "真人娛樂",
+        "menuTitle": "真人娱乐",
         "link": "Casino"
     },
     {
-        "menuTitle": "電子遊戲",
+        "menuTitle": "电子游戏",
         "link": "Computer"
     },
     {
-        "menuTitle": "優惠活動",
+        "menuTitle": "优惠活动",
         "link": "Activity"
     }
 ]

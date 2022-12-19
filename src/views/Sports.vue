@@ -30,10 +30,21 @@
           <p>体育赛事</p>
           <span>SPORTS</span>
         </div>
-        <div class="ann">每月提供上万场体育赛事投注，经典赛事一应俱全。业内赔率最高！覆盖世界各地赛事,让球、大小、半全场、波胆、单双、总入球、连串过关等多元竞猜，让您畅游轻松娱乐投注。</div>
-        <div class="sportSort">
-            <img src="@/assets/images/bg/sportSort.png">
+        <div class="ann">
+          每月提供上万场体育赛事投注，经典赛事一应俱全。业内赔率最高！覆盖世界各地赛事,让球、大小、半全场、波胆、单双、总入球、连串过关等多元竞猜，让您畅游轻松娱乐投注。
         </div>
+        <div class="sportSort">
+          <img src="@/assets/images/bg/sportSort.png" />
+        </div>
+      </div>
+      <div class="gameList">
+        <ul>
+          <li>
+            <router-link to="">
+              <img src="@/assets/images/hallList/min/sport-super.webp" />
+            </router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -53,43 +64,6 @@ import Paginator from "@/components/Paginator.vue";
 .gamePage {
   padding-bottom: 50px;
   background: repeat-y url("@/assets/images/bg/homeCnt.webp");
-  @at-root .gameBox {
-    width: calc(100vw - 30px);
-    max-width: 1320px;
-    padding: 10px 10px 20px;
-    margin: auto;
-    // border: 2px solid #fff;
-    // border-radius: 8px;
-    // background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
-    // box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
-
-    @at-root .introduce{
-        max-width: 400px;
-        margin: auto;
-        .title{
-            text-align: center;           
-            font-size: 18px;
-            color: #3688cb;
-            letter-spacing: 1px;
-            p{
-                line-height: 28px;
-                font-size: 30px;  
-                color: #285aa1;   
-                font-weight: bold;
-            }
-        }
-        .ann{
-            margin: 10px 0 20px;
-            line-height: 24px;
-            color: #999;
-        }
-        .sportSort{
-            max-width: 300px;
-            margin: auto;
-        }
-    }
-  }
-
   @at-root .game-sportBox {
     max-width: 1400px;
     height: 50vw;
@@ -174,6 +148,52 @@ import Paginator from "@/components/Paginator.vue";
       @include pos(blr, 6%, 0, 0);
       opacity: 0;
       animation: rupture 1s 0.6s forwards;
+    }
+  }
+
+  @at-root .gameBox {
+    width: calc(100vw - 30px);
+    max-width: 1320px;
+    padding: 10px 10px 20px;
+    margin: auto;
+    
+
+    @at-root .introduce {
+      max-width: 400px;
+      margin: 0 auto 30px;
+      font-size: 15px;
+      .title {
+        text-align: center;
+        font-size: 18px;
+        color: #3688cb;
+        letter-spacing: 1px;
+        p {
+          line-height: 28px;
+          font-size: 30px;
+          color: #285aa1;
+          font-weight: bold;
+        }
+      }
+      .ann {
+        margin: 10px 0 20px;
+        line-height: 24px;
+        color: #999;
+      }
+      .sportSort {
+        max-width: 300px;
+        margin: auto;
+      }
+    }
+
+    @at-root .gameList {
+      ul{
+        display: flex;
+        justify-content: center;
+      }
+      li{
+        max-width: 300px;
+        filter: drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+      }
     }
   }
 }
