@@ -22,12 +22,85 @@
     </div>
 
     <div class="gameBox">
-      <ul>
-        <li><img src="@/assets/images/hallList/min/live-ab.webp"></li>
-        <li><img src="@/assets/images/hallList/min/live-dg.webp"></li>
-        <li><img src="@/assets/images/hallList/min/live-sa.webp"></li>
-        <li><img src="@/assets/images/hallList/min/live-wm.webp"></li>
-      </ul>
+      <div class="gameInner">
+        <div class="gameSel">
+          <ul>
+            <li :class="{ on: gameSel == 0 }" @click="gameSel = 0"><img src="@/assets/images/hallList/min/live-ab.webp" /></li>
+            <li :class="{ on: gameSel == 1 }" @click="gameSel = 1"><img src="@/assets/images/hallList/min/live-dg.webp" /></li>
+            <li :class="{ on: gameSel == 2 }" @click="gameSel = 2"><img src="@/assets/images/hallList/min/live-sa.webp" /></li>
+            <li :class="{ on: gameSel == 3 }" @click="gameSel = 3"><img src="@/assets/images/hallList/min/live-wm.webp" /></li>
+          </ul>
+        </div>
+        <div class="gameList">
+          <div class="pageTag"><Paginator :nowPage="1" :totalPage="2" /></div>
+          <ul>
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_01.jpg">
+              <p>Baccarat 1</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_01.svg">
+              </div>
+            </li>
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_02.jpg">
+              <p>Baccarat 2</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_02.svg">
+              </div>
+            </li>  
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_03.jpg">
+              <p>Baccarat 3</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_01.svg">
+              </div>
+            </li>  
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_04.jpg">
+              <p>Baccarat 4</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_01.svg">
+              </div>
+            </li>  
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_05.jpg">
+              <p>Baccarat 5</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_02.svg">
+              </div>
+            </li> 
+            <li>
+              <img src="@/assets/images/casinoList/baccarat_06.jpg">
+              <p>Baccarat 6</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_02.svg">
+              </div>
+            </li> 
+
+            <li>
+              <img src="@/assets/images/casinoList/dragon-tiger.jpg">
+              <p>Dragon Tiger</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_03.svg">
+              </div>
+            </li>  
+            <li>
+              <img src="@/assets/images/casinoList/roulette.jpg">
+              <p>Roulette</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_04.svg">
+              </div>
+            </li>  
+            <li>
+              <img src="@/assets/images/casinoList/sicbo.jpg">
+              <p>Sic Bo</p>
+              <div class="assets">
+                <img src="@/assets/images/casinoList/assets_05.svg">
+              </div>
+            </li>  
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,17 +111,15 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
+const gameSel = ref(0);
 
 // 返回所有撲克牌圖片路徑
 const repokerSrc = (num) => {
   return new URL(
-    `/src/assets/images/at_casino/pok_${String(num).padStart(2,'0')}.png`,
+    `/src/assets/images/at_casino/pok_${String(num).padStart(2, "0")}.png`,
     import.meta.url
   ).href;
-}
-
-
-
+};
 </script>
     <style lang="scss" scoped>
 @import "@/scss/method.scss";
@@ -61,7 +132,7 @@ const repokerSrc = (num) => {
     max-width: 1400px;
     height: 50vw;
     max-height: 700px;
-    margin: 0 auto 15px;
+    margin: 0 auto 10px;
     background: url("@/assets/images/at_casino/live-bg.webp") no-repeat center
       bottom / cover;
     overflow: hidden;
@@ -146,7 +217,7 @@ const repokerSrc = (num) => {
     }
   }
   @at-root .gameBox {
-    width: calc(100vw - 30px);
+    width: calc(100% - 15px);
     max-width: 1320px;
     padding: 10px 10px 20px;
     margin: auto;
@@ -154,15 +225,106 @@ const repokerSrc = (num) => {
     border-radius: 5px;
     background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-    ul{
+    .gameInner {
       display: flex;
-      justify-content: center;
-      gap: 10px;
+      font-size: 14px;
     }
-    li{
-      max-width: 150px;
-      cursor: pointer;
-      filter: drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+    .gameSel {
+      padding-top: 40px;
+      margin-right: 10px;
+      flex-shrink: 0;
+      li {
+        width: 100px;
+        filter: grayscale(100%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+        cursor: pointer;
+        transition: transform 0.3s;
+        & + li {
+          margin-top: 8px;
+        }
+        &.on {
+          filter: grayscale(0%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+          transform: translateY(-2px);
+        }
+      }
+    }
+    .pageTag {
+      height: 40px;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .gameList {
+      width: 100%;
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      li {
+        width: calc(100% / 4 - 8px);
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+
+        @include rwd(1200) {
+          width: calc(100% / 3 - 8px);
+        }
+        @include rwd(800) {
+          width: calc(100% / 2 - 8px);
+        }
+        @include hover{
+          &:hover{
+            p{
+              display: none;
+            }
+            .assets{
+              transform: translateY(0%);
+              transition: .3s;
+            }
+          }
+        }
+      }
+      p {
+        width: 100%;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        position: absolute;
+        @include pos(bl,0);
+        font-size: 12px;
+      }
+      .assets{
+        width: 100%;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        @include pos(bl,0);
+        transform: translateY(100%);
+      }
+    }
+
+    @include rwd(450) {
+      .gameInner {
+        flex-direction: column;
+      }
+      .gameSel {
+        padding: 0 20px 10px 0;
+        display: flex;
+        overflow-x: scroll;
+
+        ul {
+          display: flex;
+        }
+        li {
+          width: 90px;
+        }
+        li + li {
+          margin: 0 0 0 10px;
+        }
+      }
     }
   }
 }

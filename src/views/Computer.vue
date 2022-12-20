@@ -40,7 +40,6 @@
     </div>
 
     <div class="gameBox">
-      <div class="pageTag"><Paginator :nowPage="1" :totalPage="2" /></div>
       <div class="gameInner">
         <div class="gameSel">
           <ul>
@@ -55,6 +54,7 @@
           </ul>
         </div>
         <div class="gameList">
+          <div class="pageTag"><Paginator :nowPage="1" :totalPage="2" /></div>
           <ul>
             <li>
               <router-link to="">
@@ -222,7 +222,7 @@ onMounted(() => {
     max-width: 1400px;
     height: 50vw;
     max-height: 700px;
-    margin: auto;
+    margin: 0 auto 10px;
     background: url("@/assets/images/at_slot/elec-bg.webp") no-repeat center
       bottom / cover;
     overflow: hidden;
@@ -324,16 +324,12 @@ onMounted(() => {
     border-radius: 5px;
     background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-    .pageTag {
-      padding: 10px 5px;
-      display: flex;
-      justify-content: flex-end;
-    }
     .gameInner {
       display: flex;
       font-size: 14px;
     }
     .gameSel {
+      padding-top: 40px;
       margin-right: 10px;
       flex-shrink: 0;
       li {
@@ -346,11 +342,20 @@ onMounted(() => {
         }
         &.on {
           filter: grayscale(0%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
-          transform: scale(1.05);
+          transform: translateY(-2px);
         }
       }
     }
+    .pageTag {
+      height: 40px;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
     .gameList {
+      width: 100%;
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -376,27 +381,24 @@ onMounted(() => {
       }
     }
 
-    @include phone {
+    @include rwd(450) {
       .gameInner {
         flex-direction: column;
       }
       .gameSel {
-        padding-bottom: 10px;
-        margin-bottom: 5px;
-        overflow: scroll;
+        padding: 0 20px 10px 0;
+        display: flex;
+        overflow-x: scroll;
+      
         ul {
           display: flex;
         }
         li {
-          min-width: 80px;
+          width: 90px;
         }
         li + li {
           margin: 0 0 0 10px;
         }
-      }
-      .gameList {
-        max-height: 50vh;
-        overflow: auto;
       }
     }
   }

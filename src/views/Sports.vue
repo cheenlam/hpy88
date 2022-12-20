@@ -224,11 +224,12 @@ const selNum = ref(0);
         max-width: 170px;
         border-radius: 5px;
         overflow: hidden;
+        transition: transform .3s;
         filter: grayscale(100%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
         cursor: pointer;
         &.on {
           filter: grayscale(0%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
-          transform: scale(1.05);
+          transform: translateY(-2px);
         }
       }
     }
