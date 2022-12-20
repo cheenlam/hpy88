@@ -15,49 +15,20 @@
       </div>
       <!-- 撲克牌展開 -->
       <div class="pokerBox">
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_01.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_02.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_03.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_04.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_05.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_06.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_07.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_08.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_09.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_10.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_11.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_12.png" />
-        </div>
-        <div class="pokerItem">
-          <img src="@/assets/images/at_casino/pok_13.png" />
+        <div class="pokerItem" v-for="(item, index) in 13" :key="index">
+          <img :src="repokerSrc(item)" />
         </div>
       </div>
     </div>
 
-    <div class="gameBox"></div>
+    <div class="gameBox">
+      <ul>
+        <li><img src="@/assets/images/hallList/min/live-ab.webp"></li>
+        <li><img src="@/assets/images/hallList/min/live-dg.webp"></li>
+        <li><img src="@/assets/images/hallList/min/live-sa.webp"></li>
+        <li><img src="@/assets/images/hallList/min/live-wm.webp"></li>
+      </ul>
+    </div>
   </div>
 </template>
       
@@ -67,6 +38,17 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
+
+// 返回所有撲克牌圖片路徑
+const repokerSrc = (num) => {
+  return new URL(
+    `/src/assets/images/at_casino/pok_${String(num).padStart(2,'0')}.png`,
+    import.meta.url
+  ).href;
+}
+
+
+
 </script>
     <style lang="scss" scoped>
 @import "@/scss/method.scss";
@@ -79,7 +61,7 @@ import Paginator from "@/components/Paginator.vue";
     max-width: 1400px;
     height: 50vw;
     max-height: 700px;
-    margin: auto;
+    margin: 0 auto 15px;
     background: url("@/assets/images/at_casino/live-bg.webp") no-repeat center
       bottom / cover;
     overflow: hidden;
@@ -168,6 +150,20 @@ import Paginator from "@/components/Paginator.vue";
     max-width: 1320px;
     padding: 10px 10px 20px;
     margin: auto;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #edf6ff, #fff 53.65%, #f0f7ff);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    ul{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    li{
+      max-width: 150px;
+      cursor: pointer;
+      filter: drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+    }
   }
 }
 

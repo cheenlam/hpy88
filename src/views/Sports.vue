@@ -24,27 +24,54 @@
         <img src="@/assets/images/at_sport/rupture.png" />
       </div>
     </div>
-    <div class="gameBox">
-      <div class="introduce">
-        <div class="title">
-          <p>体育赛事</p>
-          <span>SPORTS</span>
-        </div>
-        <div class="ann">
-          每月提供上万场体育赛事投注，经典赛事一应俱全。业内赔率最高！覆盖世界各地赛事,让球、大小、半全场、波胆、单双、总入球、连串过关等多元竞猜，让您畅游轻松娱乐投注。
-        </div>
-        <div class="sportSort">
-          <img src="@/assets/images/bg/sportSort.png" />
-        </div>
+
+    <div class="introduce">
+      <div class="title">
+        <p>体育赛事</p>
+        <span>SPORTS</span>
       </div>
-      <div class="gameList">
+      <div class="ann">
+        每月提供上万场体育赛事投注，经典赛事一应俱全。业内赔率最高！覆盖世界各地赛事,让球、大小、半全场、波胆、单双、总入球、连串过关等多元竞猜，让您畅游轻松娱乐投注。
+      </div>
+      <div class="sportSort">
+        <img src="@/assets/images/bg/sportSort.png" />
+      </div>
+    </div>
+
+    <div class="gameBox">
+      <div class="gameSel">
         <ul>
-          <li>
-            <router-link to="">
-              <img src="@/assets/images/hallList/min/sport-super.webp" />
-            </router-link>
+          <li :class="{'on' : selNum == 0}" @click="selNum = 0">
+            <img src="@/assets/images/selList_test/sport_cmd.jpg" />
+          </li>
+          <li :class="{'on' : selNum == 1}" @click="selNum = 1">
+            <img src="@/assets/images/selList_test/sport_m8.jpg" />
           </li>
         </ul>
+      </div>
+      <div class="gameList" v-if="selNum == 0">
+        <div class="gameMsg">
+          <h5>C-Sports</h5>
+          <p>
+            C-Sports是一款由CMD368开发并推出的体育博彩游戏。CMD368基于实时体育动态和体育市场热点提供相应的博彩服务，其中包括但不仅限于篮球、足球、电竞、高尔夫球和羽毛球等赛事。
+          </p>
+        </div>
+        <div class="btnBox">
+          <button>进入游戏</button>
+        </div>
+        <div class="bottom_img cmd"></div>
+      </div>
+      <div class="gameList" v-if="selNum == 1">
+        <div class="gameMsg">
+          <h5>M8-Sports</h5>
+          <p>
+            M8体育博彩是一款由M8bet提供的体育博彩游戏。M8体育拥有实时的足球比赛结果，最更新的赔率和内置的快速赔付。通过M8体育博彩，玩家可每周享受超过3000场的地区和国际体育赛事，包括但不限于足球、篮球、网球和羽毛球等。
+          </p>
+        </div>
+        <div class="btnBox">
+          <button>进入游戏</button>
+        </div>
+        <div class="bottom_img m8"></div>
       </div>
     </div>
   </div>
@@ -56,14 +83,17 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
+
+const selNum = ref(0);
+
+
+
 </script>
   <style lang="scss" scoped>
 @import "@/scss/method.scss";
 @import "@/scss/shared.scss";
 
 .gamePage {
-  padding-bottom: 50px;
-  background: repeat-y url("@/assets/images/bg/homeCnt.webp");
   @at-root .game-sportBox {
     max-width: 1400px;
     height: 50vw;
@@ -151,48 +181,116 @@ import Paginator from "@/components/Paginator.vue";
     }
   }
 
-  @at-root .gameBox {
-    width: calc(100vw - 30px);
-    max-width: 1320px;
-    padding: 10px 10px 20px;
+  @at-root .introduce {
+    max-width: 500px;
     margin: auto;
-    
+    padding: 10px;
+    font-size: 14px;
+    .title {
+      text-align: center;
+      font-size: 18px;
+      color: #3688cb;
+      letter-spacing: 1px;
+      p {
+        font-size: 30px;
+        color: #285aa1;
+        font-weight: bold;
+      }
+    }
+    .ann {
+      margin: 10px 0 20px;
+      line-height: 21px;
+      color: #999;
 
-    @at-root .introduce {
-      max-width: 400px;
-      margin: 0 auto 30px;
-      font-size: 15px;
-      .title {
-        text-align: center;
-        font-size: 18px;
-        color: #3688cb;
-        letter-spacing: 1px;
-        p {
-          line-height: 28px;
-          font-size: 30px;
-          color: #285aa1;
-          font-weight: bold;
+    }
+    .sportSort {
+      max-width: 300px;
+      margin: auto;
+    }
+  }
+
+  @at-root .gameBox {
+    max-width: 1320px;
+    padding: 20px 10px 0;
+    margin: auto;
+    @at-root .gameSel {
+      margin-bottom: 25px;
+      ul {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+      li {
+        max-width: 170px;
+        border-radius: 5px;
+        overflow: hidden;
+        filter: grayscale(100%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+        cursor: pointer;
+        &.on {
+          filter: grayscale(0%) drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+          transform: scale(1.05);
         }
-      }
-      .ann {
-        margin: 10px 0 20px;
-        line-height: 24px;
-        color: #999;
-      }
-      .sportSort {
-        max-width: 300px;
-        margin: auto;
       }
     }
 
     @at-root .gameList {
-      ul{
-        display: flex;
-        justify-content: center;
+      .gameMsg {
+        max-width: 500px;
+        margin: 0 auto 30px;
+        color: #999;
+        font-size: 14px;
+        h5 {
+          padding-bottom: 10px;
+          font-size: 28px;
+          font-weight: bold;
+          color: #333;
+          text-align: center;
+        }
+        p {
+          line-height: 22px;
+        }
       }
-      li{
+      .btnBox {
+        width: 100%;
         max-width: 300px;
-        filter: drop-shadow(2px 2px 2px rgba(6, 10, 22, 0.5));
+        margin: auto;
+        button {
+          @include fullNone;
+          width: 100%;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-weight: bold;
+          background: linear-gradient(180deg, #57d7ff 0%, #1e50a6 100%);
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+      .bottom_img{
+        height: 420px;
+        background:  no-repeat center bottom / 1300px auto;
+        position: relative;
+        &::before,
+        &::after{
+          content: '';
+          width: 10%;
+          height: 100%;
+          position: absolute;
+        }
+        &::before{
+          background: linear-gradient(90deg,#fff,transparent);
+          @include pos(tl,0);
+        }
+        &::after{
+          background: linear-gradient(-90deg,#fff,transparent);
+          @include pos(tr,0);
+        }
+
+        &.cmd{
+          background-image: url("@/assets/images/bg/sport_cmdBg.jpg");
+        }
+        &.m8{
+          background-image: url("@/assets/images/bg/sport_m8Bg.jpg");
+        }
       }
     }
   }

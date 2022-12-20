@@ -105,7 +105,7 @@
             @include pos(tr, 43%, 28%);
         }
         @for $i from 1 through $num {
-            #{100 / $num * $i + "%"} {
+            #{calc(100 / $num * $i) + "%"} {
                 @if ($i == 2) {
                     transform: rotateX(60deg) rotateY(-15deg) rotate(16deg) scale(0.55);
                     @include pos(tr, 41%, 24%);
