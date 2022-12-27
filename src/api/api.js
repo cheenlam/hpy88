@@ -62,6 +62,24 @@ export function getHallList() {
     });
 }
 
+// 取得條款與條例清單
+export function getGermsList() {
+    return requestService({
+        url: "/json/termsList.json",
+        method: "get"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+
+
+
 
 
 

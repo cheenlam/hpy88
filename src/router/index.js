@@ -5,7 +5,7 @@ import Sports from "@/views/Sports.vue";
 import Casino from "@/views/Casino.vue";
 import Computer from "@/views/Computer.vue";
 import Activity from "@/views/Activity.vue";
-
+import InfoCentre from "@/views/InfoCentre.vue";
 
 
 const routes = [
@@ -58,6 +58,15 @@ const routes = [
         meta: {
           title: "Activity page title",
           menuIdx: 4
+        },
+      },
+      {
+        path: "InfoCentre/:id",
+        name: "InfoCentre",
+        component: InfoCentre,
+        meta: {
+          title: "InfoCentre page title",
+          menuIdx: -1
         },
       },
     ],

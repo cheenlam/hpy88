@@ -69,8 +69,8 @@
             <ul>
               <li><router-link to="">關於我們</router-link></li>
               <li><router-link to="">聯絡我們</router-link></li>
-              <li><router-link to="">常見問題</router-link></li>
-              <li><router-link to="">條款與條規</router-link></li>
+              <li><router-link to="/InfoCentre/faqs">常見問題</router-link></li>
+              <li><router-link to="/InfoCentre/terms">條款與條規</router-link></li>
             </ul>
           </ul>
         </div>
