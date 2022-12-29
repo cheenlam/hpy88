@@ -21,30 +21,47 @@
       </div>
       <div class="hd_right">
         <ul>
-          <li>登入</li>
-          <li class="regBtn">註冊</li>
+          <li @click="openSign(0)">登入</li>
+          <li @click="openSign(1)" class="regBtn">註冊</li>
         </ul>
       </div>
     </div>
   </div>
+
+  <SignLog v-if="signSw" @closeSign="closeSign" :signNum="signNum"></SignLog>
 </template>
 
 <script setup>
 import { getTopMenu } from "@/api/api";
 import { onMounted, ref,nextTick } from "vue";
+import SignLog from "@/components/tool/SignLog.vue";
+
 const topMenu = ref([]);
 const menuIdx = ref(0);
-
 const getMenu = () => {
   getTopMenu().then(function (response) {
     topMenu.value = response;
   });
 };
-
 // 修改menu狀態
 const chgMenuIdx = () => {
   menuIdx.value = sessionStorage.getItem('menuIdx');
 }
+
+// 登入註冊彈窗
+const signSw = ref(false);
+const signNum = ref(0);
+// 開啟登入註冊彈窗
+const openSign = (val) => {
+  signSw.value = true;
+  signNum.value = val;
+}
+// 關閉登入註冊彈窗
+const closeSign = () => {
+  signSw.value = false;
+}
+
+
 
 const init = onMounted(() => {
   getMenu();
@@ -155,20 +172,14 @@ const init = onMounted(() => {
       cursor: pointer;
       border-radius: 5px;
       font-weight: bold;
-      background: linear-gradient(180deg, #57d7ff 0%, #1e50a6 100%);
-      color: #fff;
-      transition: transform .3s;
+      letter-spacing: 1px;
       & + li {
         margin-left: 5px;
       }
-      &:active{
-        transform: translateY(2px);
-      }
     }
     .regBtn {
-      border-radius: 5px;
-      color: #333;
-      background: linear-gradient(180deg, #f8e98e 0%, #f2d06f 100%);
+      color: #fff;
+      background-image: conic-gradient(from 1turn, #57d7ff, #1e50a6);
     }
   }
 }
@@ -198,8 +209,12 @@ const init = onMounted(() => {
         display: flex;
         justify-content: center;
         border-radius: 0;
+        background-image: conic-gradient(from 1turn, #fffea7, #d3d161);
         & + li {
           margin-left: 0;
+        }
+        &.regBtn {
+          background-image: conic-gradient(from 1turn, #57d7ff, #1e50a6);
         }
       }
     }
