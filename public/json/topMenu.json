@@ -9,14 +9,14 @@
     },
     {
         "menuTitle": "真人娱乐",
-        "link": "Casino"
+        "link": "/Casino"
     },
     {
         "menuTitle": "电子游戏",
-        "link": "Computer"
+        "link": "/Computer"
     },
     {
         "menuTitle": "优惠活动",
-        "link": "Activity"
+        "link": "/Activity"
     }
 ]

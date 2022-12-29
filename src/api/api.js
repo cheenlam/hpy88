@@ -77,6 +77,21 @@ export function getGermsList() {
     });
 }
 
+// 取得常見問題清單
+export function getFaqsList() {
+    return requestService({
+        url: "/json/faqsList.json",
+        method: "get"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
 
 
 

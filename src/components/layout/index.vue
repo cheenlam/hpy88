@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <router-view></router-view>
+  <router-view class="routerCnt"></router-view>
   <Footer></Footer>
  
   <div class="goTop" @click="goTop()">
@@ -26,6 +26,10 @@ onMounted(() => {});
 
 <style lang="scss" scoped>
 @import "@/scss/method.scss";
+
+.routerCnt{
+  min-height: calc(100vh - 250px);
+}
 .goTop {
   width: 50px;
   height: 50px;
