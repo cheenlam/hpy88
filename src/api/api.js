@@ -92,6 +92,21 @@ export function getFaqsList() {
     });
 }
 
+// 取得DW遊戲
+export function getDwGames() {
+    return requestService({
+        url: "/json/dwGame.json",
+        method: "get"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
 
 
 

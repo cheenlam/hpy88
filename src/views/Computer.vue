@@ -54,127 +54,19 @@
           </ul>
         </div>
         <div class="gameList">
-          <div class="pageTag"><Paginator :nowPage="1" :totalPage="2" /></div>
+          <div class="pageTag">
+            <Paginator
+              :nowPage="nowPage"
+              :totalPage="totalPage"
+              @updatePage="updatePage"
+            />
+          </div>
           <ul>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/01.png" />
-                <p>钱龙-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/02.png" />
-                <p>黑狼-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/03.png" />
-                <p>满贯金财神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/04.png" />
-                <p>轰炸糖果</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/05.png" />
-                <p>快樂鳥嘉年華</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/06.png" />
-                <p>黃金特快車</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/07.png" />
-                <p>金禧迎狮-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/08.png" />
-                <p>快乐鱼</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/09.png" />
-                <p>淘金乐-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/10.png" />
-                <p>皇朝盛世2-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/11.png" />
-                <p>致命毒苹果-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/12.png" />
-                <p>诸神荣耀</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/13.png" />
-                <p>采珠潜水员2-藏宝箱</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/14.png" />
-                <p>烈日女神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/15.png" />
-                <p>钱滚滚圣甲虫</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/16.png" />
-                <p>太阳神殿2-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/17.png" />
-                <p>太阳神殿3-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/18.png" />
-                <p>好运金财神-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/19.png" />
-                <p>聖甲降臨-集鸿运</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="@/assets/images/slotList/20.png" />
-                <p>大三元-集鸿运</p>
-              </router-link>
+            <li v-for="(item, index) in nowGameList" :key="index">
+              <a :href="item.link" target="_blank">
+                <img :src="reDwGameImg(item.imgSrc)" />
+                <p>{{ item.title }}</p>
+              </a>
             </li>
           </ul>
         </div>
@@ -189,20 +81,53 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
-import { getHallList } from "@/api/api";
+import { getHallList, getDwGames } from "@/api/api";
 
 const gameSel = ref(0);
 const selList = ref([]);
+const dwGame = ref([]);
+
+// 目前遊戲清單
+const nowGameList = ref([]);
+const nowPage = ref(1);
+const totalPage = ref(1);
 
 const setHallList = () => {
   getHallList().then((res) => {
     selList.value = res.min.slot;
-    console.log(res.min.slot);
   });
+
+  getDwGames().then((res) => {
+    dwGame.value = res;
+    totalPage.value = res.length == 0 ? 1 : Math.ceil(res.length / 24);
+
+    nowGameList.value = dwGame.value.filter((item) => {
+      return (
+        dwGame.value.indexOf(item) >= (nowPage.value - 1) * 24 &&
+        dwGame.value.indexOf(item) <= nowPage.value * 24 - 1
+      );
+    });
+  });
+};
+
+const updatePage = (val) => {
+  nowPage.value = val.value;
+
+  nowGameList.value = dwGame.value.filter((item) => {
+      return (
+        dwGame.value.indexOf(item) >= (nowPage.value - 1) * 24 &&
+        dwGame.value.indexOf(item) <= nowPage.value * 24 - 1
+      );
+    });
 };
 
 const getAssetsFile = (url) => {
   return new URL(`/src/assets/images/hallList/min/${url}.webp`, import.meta.url)
+    .href;
+};
+
+const reDwGameImg = (url) => {
+  return new URL(`/src/assets/images/dailyWins/${url}.jpg`, import.meta.url)
     .href;
 };
 
@@ -389,7 +314,7 @@ onMounted(() => {
         padding: 0 20px 10px 0;
         display: flex;
         overflow-x: scroll;
-      
+
         ul {
           display: flex;
         }
