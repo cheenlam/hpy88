@@ -2,6 +2,31 @@ import { requestService } from "@/api/request";
 import { filterApiData } from "@/utils/method"
 import { setToken } from "@/utils/cookies"
 
+export function apiMemberAdd(account,pwd,name) {
+    const data = JSON.stringify({
+        account: account,
+        pwd: pwd,
+        name:name
+    });
+    
+    return requestService({
+        url: "http://api.hpy88.cc:8000/member/add",
+        method: "post",
+        data,
+    }).then((response) => {
+        if (response.data.code == 200) {        
+            return response.data; 
+        } else {
+            return response.data; 
+        }
+    });
+}
+
+
+
+
+
+
 // 取得上方選單內容
 export function getTopMenu() {
     return requestService({

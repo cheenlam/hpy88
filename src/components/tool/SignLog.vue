@@ -10,17 +10,30 @@
         <template v-if="signNum == 0">
           <div class="sortTitle">登入</div>
           <div class="iptBox">
-            <form>
-              <input
-                type="email"
-                placeholder="请输入帐户名称"
-                autocomplete="off"
+            <form> 
+              <!-- 登入 (帳號) -->
+              <label>
+                <input
+                type="text"
+                placeholder="请填写4位数以上英数字帐户名称"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                autocomplete="false"
+                v-model="regVal.account"
+                @keyup="ckregVal()"
               />
-              <input
+              <p class="errorTxt" v-if="regVal.errorSw">该帐户已经注册</p>
+              </label>
+              <!-- 登入 (密碼) -->
+              <label>
+                <input
                 type="password"
-                placeholder="请输入登入密码"
-                autocomplete="off"
+                placeholder="请填写5位数以上英数字账户密码"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                autocomplete="new-password"
+                v-model="regVal.pwd"
+                @keyup="ckregVal()"
               />
+              </label>
             </form>
           </div>
           <div class="jumpSort" @click="signNum = 2">忘记密码</div>
@@ -38,29 +51,68 @@
         <!-- 註冊 -->
         <template v-if="signNum == 1">
           <div class="sortTitle">注册</div>
-          <div class="iptBox">
-            <form>
-              <input type="email" placeholder="请填写帐户名称" />
-              <input
-                type="password"
-                autocomplete="Off"
-                placeholder="请填写账户密码"
+          <form v-on:submit.prevent>
+            <div class="iptBox">
+              <!-- 註冊 (帳號) -->
+              <label>
+                <input
+                type="text"
+                placeholder="请填写4位数以上英数字帐户名称"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                autocomplete="false"
+                v-model="regVal.account"
+                @keyup="ckregVal()"
               />
-            </form>
-          </div>
-          <label class="ckBox">
-            <input type="checkBox" />
-            <p>我同意用户协议并确认我至少18岁</p>
-          </label>
+              <p class="errorTxt" v-if="regVal.errorSw">该帐户已经注册</p>
+              </label>
+              <!-- 註冊 (密碼) -->
+              <label>
+                <input
+                type="password"
+                placeholder="请填写5位数以上英数字账户密码"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                autocomplete="new-password"
+                v-model="regVal.pwd"
+                @keyup="ckregVal()"
+              />
+              </label>
+              <!-- 註冊 (信箱) -->
+              <label>
+                <input
+                type="email"
+                placeholder="請填寫您的信箱"
+                v-model="regVal.email"
+                @keyup="ckregVal()"
+              />
+              </label>
+              <!-- 註冊 (暱稱) -->
+              <label>
+                <input
+                type="text"
+                placeholder="請填寫您的暱稱"
+                v-model="regVal.name"
+                @keyup="ckregVal()"
+              />
+              </label>   
+            </div>
 
-          <div class="btnBox">
-            <button>创建账户</button>
-            <p>
-              已有帐户？<span class="jumpSort" @click="signNum = 0"
-                >登入账户</span
-              >
-            </p>
-          </div>
+            <label class="ckBox">
+              <input type="checkbox" 
+                      v-model="regVal.checked"
+                     @change="ckregVal()"
+              />
+              <p>我同意用户协议并确认我至少18岁</p>
+            </label>
+
+            <div class="btnBox">
+              <button @click="regMember()" :disabled="regVal.disabled">创建账户</button>
+              <p>
+                已有帐户？<span class="jumpSort" @click="signNum = 0"
+                  >登入账户</span
+                >
+              </p>
+            </div>
+          </form>
         </template>
 
         <!-- 忘記密碼 -->
@@ -68,7 +120,18 @@
           <div class="sortTitle">忘记密码</div>
           <div class="iptBox">
             <form>
-              <input type="email" placeholder="请填写帐户名称" />
+              <!-- 忘記密碼(帳號) -->
+              <label>
+                <input
+                type="text"
+                placeholder="请输入用户帐号"
+                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                autocomplete="false"
+                v-model="regVal.account"
+                @keyup="ckregVal()"
+              />
+              <p class="errorTxt" v-if="regVal.errorSw">该帐户已经注册</p>
+              </label>
             </form>
           </div>
           <div class="btnBox">
@@ -88,7 +151,8 @@
   
   
 <script setup>
-import { onMounted, ref } from "vue";
+import { apiMemberAdd } from "@/api/api";
+import { onMounted, ref, reactive } from "vue";
 const emit = defineEmits(["closeSign"]);
 const props = defineProps({ signNum: Number });
 
@@ -96,6 +160,50 @@ const signNum = ref(0);
 // 關閉彈窗
 const closeSw = () => {
   emit("closeSign", true);
+};
+
+// 註冊帳戶
+const regVal = reactive({
+  account: "",
+  pwd: "",
+  email:'',
+  name: "",
+  checked:false,
+  disabled:true,
+  errorSw:false
+});
+
+
+// 確認註冊輸入
+const ckregVal = () => {
+  regVal.errorSw = false;
+  
+  if(regVal.account.length >= 4 && regVal.pwd.length >= 5 && regVal.name !='' && regVal.checked && isMail(regVal.email)){
+    regVal.disabled = false;
+  }else{
+    regVal.disabled = true;
+  }
+}
+
+// 信箱認證
+const isMail = (email) => {
+  let regex = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+  if(!regex.test(email)) {
+    return false;
+  }else{
+    return true;
+  }
+}
+
+// 註冊帳戶api
+const regMember = async () =>  {
+  await apiMemberAdd(regVal.account,regVal.pwd,regVal.email,regVal.name).then(function (response) {
+    if(response.success){
+      console.log(response);
+    }else{
+      regVal.errorSw = true;
+    }
+  });
 };
 
 onMounted(() => {
@@ -140,8 +248,8 @@ onMounted(() => {
       height: auto;
       background: url("@/assets/images/bg/signBg.jpg") no-repeat top center /
         cover;
-        flex-shrink: 0;
-      @include rwd(650){
+      flex-shrink: 0;
+      @include rwd(650) {
         display: none;
       }
     }
@@ -184,6 +292,14 @@ onMounted(() => {
       }
 
       .iptBox {
+        label{
+          width: 100%;
+          display: inline-block;
+        }
+        label + label {
+          margin-top: 8px;
+        }
+        
         input {
           @include fullNone;
           width: 100%;
@@ -195,8 +311,11 @@ onMounted(() => {
             border-color: #a1a6ee;
           }
         }
-        input + input {
-          margin-top: 8px;
+        .errorTxt{
+          padding-top: 2px;
+          color: #f00;
+          font-size: 12px;
+          text-align: right;
         }
       }
       .jumpSort {
@@ -234,6 +353,9 @@ onMounted(() => {
           font-size: 15px;
           letter-spacing: 1px;
           cursor: pointer;
+          &:disabled {
+            background-image: conic-gradient(from 1turn, #c9c9c9, #969696);
+          }
         }
         p {
           padding: 5px 0;
