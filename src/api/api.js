@@ -2,6 +2,7 @@ import { requestService } from "@/api/request";
 import { filterApiData } from "@/utils/method"
 import { setToken } from "@/utils/cookies"
 
+// 註冊
 export function apiMemberAdd(account,pwd,name) {
     const data = JSON.stringify({
         account: account,
@@ -18,6 +19,43 @@ export function apiMemberAdd(account,pwd,name) {
             return response.data; 
         } else {
             return response.data; 
+        }
+    });
+}
+
+// 會員登入
+export function apiLogin(account, password) {
+    const data = JSON.stringify({
+        account: account,
+        password: password,
+    });
+    return requestService({
+        url: "https://back.hpy88.net/api/login",
+        method: "post",
+        data,
+    }).then((response) => {
+        if (response.data.code === 200) {    
+            sessionStorage.setItem('token',response.data.data.token)    
+            // setToken(response.data.data.token)
+            return response.data; 
+        } else {
+            return response.data;
+        }
+    });
+}
+
+// 取得會員資料
+export function apiGetUserMsg(token) {
+    const data = JSON.stringify({token});
+    return requestService({
+        url: "http://api.cckgame.com/api/profile",
+        method: "post",data
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
         }
     });
 }
@@ -199,25 +237,7 @@ export function getDwGames() {
 
 
 
-// 登入
-export function login(account, password) {
-    const data = JSON.stringify({
-        account: account,
-        password: password,
-    });
-    return requestService({
-        url: "http://api.cckgame.com/api/login",
-        method: "post",
-        data,
-    }).then((response) => {
-        if (response.data.code === 200) {        
-            setToken(response.data.data.token)
-            return response.data.data; 
-        } else {
-            return response.data.message
-        }
-    });
-}
+
 
 // 更新token
 // export function refreshToken() {
@@ -233,21 +253,7 @@ export function login(account, password) {
 //   });
 // }
 
-// 取得會員資料
-export function apiGetUserMsg(token) {
-    const data = JSON.stringify({token});
-    return requestService({
-        url: "http://api.cckgame.com/api/profile",
-        method: "post",data
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
+
 
 
 

@@ -18,10 +18,10 @@
                 placeholder="请填写4位数以上英数字帐户名称"
                 onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
                 autocomplete="false"
-                v-model="regVal.account"
-                @keyup="ckregVal()"
+                v-model="loginVal.account"
+                @keyup="ckloginVal()"
               />
-              <p class="errorTxt" v-if="regVal.errorSw">该帐户已经注册</p>
+              <p class="errorTxt" v-if="loginVal.errorSw">帐户或密码错误</p>
               </label>
               <!-- 登入 (密碼) -->
               <label>
@@ -30,8 +30,8 @@
                 placeholder="请填写5位数以上英数字账户密码"
                 onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
                 autocomplete="new-password"
-                v-model="regVal.pwd"
-                @keyup="ckregVal()"
+                v-model="loginVal.pwd"
+                @keyup="ckloginVal()"
               />
               </label>
             </form>
@@ -39,7 +39,7 @@
           <div class="jumpSort" @click="signNum = 2">忘记密码</div>
 
           <div class="btnBox">
-            <button>登入账户</button>
+            <button @click="loginMember()" :disabled="loginVal.disabled">登入账户</button>
             <p>
               您是HPY88的新用戶？<span class="jumpSort" @click="signNum = 1"
                 >创建账户</span
@@ -151,9 +151,9 @@
   
   
 <script setup>
-import { apiMemberAdd } from "@/api/api";
-import { onMounted, ref, reactive } from "vue";
-const emit = defineEmits(["closeSign"]);
+import { apiLogin , apiMemberAdd} from "@/api/api";
+import { onMounted, ref, reactive , nextTick } from "vue";
+const emit = defineEmits(["closeSign","signIn"]);
 const props = defineProps({ signNum: Number });
 
 const signNum = ref(0);
@@ -161,6 +161,35 @@ const signNum = ref(0);
 const closeSw = () => {
   emit("closeSign", true);
 };
+
+// 登入會員
+const loginVal = reactive({
+  account: "",
+  pwd: "",
+  disabled:true,
+  errorSw:false
+})
+
+const ckloginVal = () => {
+  loginVal.errorSw = false;
+  if(loginVal.account.length >= 4 && loginVal.pwd.length >= 5){
+    loginVal.disabled = false;
+  }else{
+    loginVal.disabled = true;
+  }
+}
+
+const loginMember = async () => {
+  await apiLogin(loginVal.account, loginVal.pwd).then((res) => {
+      if(res.code == 200){
+        emit("signIn", true);
+        closeSw()
+      }else{
+        loginVal.errorSw = true;
+      }
+  })
+}
+
 
 // 註冊帳戶
 const regVal = reactive({

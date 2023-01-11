@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="inner">
+    <div class="inner" :class="{'login' : isLogin}">
       <div class="hd_left">
         <router-link to="/home" class="logo">
           <img src="@/assets/images/logo_row.webp" alt="logo" />
@@ -19,25 +19,35 @@
           </ul>
         </div>
       </div>
-      <div class="hd_right">
+      <div class="hd_right" v-if="!isLogin">
         <ul>
           <li @click="openSign(0)">登入</li>
           <li @click="openSign(1)" class="regBtn">註冊</li>
         </ul>
       </div>
+
+      <div class="hd_isLogin" v-if="isLogin">
+        <div class="avatar">
+          <img src="@/assets/images/icon/hd_avatar.png" alt="avatar">
+        </div>
+        <button @click="signOut()">登出</button>
+      </div>
     </div>
   </div>
 
-  <SignLog v-if="signSw" @closeSign="closeSign" :signNum="signNum"></SignLog>
+  <SignLog v-if="signSw" @closeSign="closeSign" @signIn="signIn" :signNum="signNum"></SignLog>
 </template>
 
 <script setup>
 import { getTopMenu } from "@/api/api";
 import { onMounted, ref,nextTick } from "vue";
 import SignLog from "@/components/tool/SignLog.vue";
+import { getToken } from "@/utils/cookies";
 
+const isLogin = ref(false)
 const topMenu = ref([]);
 const menuIdx = ref(0);
+
 const getMenu = () => {
   getTopMenu().then(function (response) {
     topMenu.value = response;
@@ -61,11 +71,31 @@ const closeSign = () => {
   signSw.value = false;
 }
 
-
+// 確認登入狀態
+const ckLogin = () => {
+  const token = sessionStorage.getItem('token');
+  if(token == null || token == ''){
+    isLogin.value = false;
+  }else{
+    isLogin.value = true;
+  }
+}
+// 登入
+const signIn = (data) => {
+  isLogin.value = data;
+}
+// 登出
+const signOut = () => {
+  isLogin.value = false;
+  sessionStorage.removeItem('token');
+  location.href = '/'
+}
 
 const init = onMounted(() => {
   getMenu();
   chgMenuIdx();
+  ckLogin();
+
   // 監聽
   window.addEventListener("setItemEvent", (e) => {
     if (e.key == "menuIdx") {
@@ -88,6 +118,7 @@ const init = onMounted(() => {
   font-size: 15px;
   background-color: #eef2fc;
   box-shadow: 0 2px 8px #a0a0a0;
+
   .inner {
     max-width: 1320px;
     height: 60px;
@@ -182,6 +213,30 @@ const init = onMounted(() => {
       background-image: conic-gradient(from 1turn, #57d7ff, #1e50a6);
     }
   }
+
+  @at-root .hd_isLogin{
+    display: flex;
+    align-items: center;
+ 
+    .avatar{
+      width: 35px;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    button{
+      @include fullNone;
+      height: 34px;
+      padding: 5px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #fff;
+      background-image: conic-gradient(from 1turn, #57d7ff, #1e50a6);
+    }
+  }
 }
 
 @include rwd(750) {
@@ -198,6 +253,10 @@ const init = onMounted(() => {
       padding: 0;
       height: auto;
       flex-direction: column;
+      &.login{
+        padding-right: 5px;
+        flex-direction: row;
+      }
     }
     .hd_left {
       padding: 5px 10px;

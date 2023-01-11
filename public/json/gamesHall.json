@@ -87,35 +87,15 @@
         "slot": [
             {
                 "link": "",
+                "imgSrc": "slot-dw"
+            },
+            {
+                "link": "",
                 "imgSrc": "slot-pg"
             },
             {
                 "link": "",
-                "imgSrc": "slot-bwin"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-dt"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-gr"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-play"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-rsg"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-rtg"
-            },
-            {
-                "link": "",
-                "imgSrc": "slot-sp"
+                "imgSrc": "slot-ka"
             }
         ]
     }
