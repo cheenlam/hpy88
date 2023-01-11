@@ -139,6 +139,7 @@ const init = onMounted(() => {
     }
     .hd_menu {
       height: 60px;
+      line-height: 22px;
       ul {
         height: 100%;
         display: flex;
@@ -194,7 +195,9 @@ const init = onMounted(() => {
   }
 
   @at-root .hd_right {
+    line-height: 22px;
     ul {
+      height: 100%;
       display: flex;
       align-items: center;
     }
@@ -204,6 +207,7 @@ const init = onMounted(() => {
       border-radius: 5px;
       font-weight: bold;
       letter-spacing: 1px;
+
       & + li {
         margin-left: 5px;
       }
@@ -219,14 +223,14 @@ const init = onMounted(() => {
     align-items: center;
  
     .avatar{
-      width: 35px;
+      width: 32px;
       margin-right: 8px;
       cursor: pointer;
     }
 
     button{
       @include fullNone;
-      height: 34px;
+      height: 32px;
       padding: 5px 20px;
       cursor: pointer;
       border-radius: 5px;
