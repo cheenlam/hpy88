@@ -47,7 +47,7 @@
               v-for="(item, index) in selList"
               :key="index"
               :class="{ on: gameSel == index }"
-              @click="gameSel = index"
+              @click="gameSel = index,chgGameList(index)"
             >
               <img :src="getAssetsFile(item.imgSrc)" />
             </li>
@@ -64,7 +64,7 @@
           <ul>
             <li v-for="(item, index) in nowGameList" :key="index">
               <a :href="item.link" target="_blank">
-                <img :src="reDwGameImg(item.imgSrc)" />
+                <img :src="reGameImg(item.folder,item.imgSrc)" />
                 <p>{{ item.title }}</p>
               </a>
             </li>
@@ -81,7 +81,7 @@
 import {} from "@/api/api";
 import { onMounted, ref } from "vue";
 import Paginator from "@/components/Paginator.vue";
-import { getHallList, getDwGames } from "@/api/api";
+import { getHallList, getDwGames, getPgSlot , getKaSlot } from "@/api/api";
 
 const gameSel = ref(0);
 const selList = ref([]);
@@ -96,8 +96,25 @@ const setHallList = () => {
   getHallList().then((res) => {
     selList.value = res.min.slot;
   });
+};
 
+
+// 更改遊戲清單
+const chgGameList = (index) => {
+  switch(index){
+    case 0: getDw(); break;
+    case 1: getPg(); break;
+    case 2: getKa(); break;
+  }
+};
+
+
+
+
+// 取得DW遊戲
+const getDw = () => {
   getDwGames().then((res) => {
+    nowPage.value = 1;
     dwGame.value = res;
     totalPage.value = res.length == 0 ? 1 : Math.ceil(res.length / 24);
 
@@ -108,7 +125,42 @@ const setHallList = () => {
       );
     });
   });
-};
+}
+
+// 取得PG遊戲
+const getPg = () => {
+  getPgSlot().then((res) => {
+    nowPage.value = 1;
+    dwGame.value = res;
+    totalPage.value = res.length == 0 ? 1 : Math.ceil(res.length / 24);
+
+    nowGameList.value = dwGame.value.filter((item) => {
+      return (
+        dwGame.value.indexOf(item) >= (nowPage.value - 1) * 24 &&
+        dwGame.value.indexOf(item) <= nowPage.value * 24 - 1
+      );
+    });
+  });
+}
+
+// 取得KA遊戲
+const getKa = () => {
+  getKaSlot().then((res) => {
+    nowPage.value = 1;
+    dwGame.value = res;
+    totalPage.value = res.length == 0 ? 1 : Math.ceil(res.length / 24);
+
+    nowGameList.value = dwGame.value.filter((item) => {
+      return (
+        dwGame.value.indexOf(item) >= (nowPage.value - 1) * 24 &&
+        dwGame.value.indexOf(item) <= nowPage.value * 24 - 1
+      );
+    });
+  });
+}
+
+
+
 
 const updatePage = (val) => {
   nowPage.value = val.value;
@@ -121,19 +173,24 @@ const updatePage = (val) => {
     });
 };
 
+
 const getAssetsFile = (url) => {
   return new URL(`/src/assets/images/hallList/min/${url}.webp`, import.meta.url)
     .href;
 };
 
-const reDwGameImg = (url) => {
-  return new URL(`/src/assets/images/dailyWins/${url}.jpg`, import.meta.url)
+const reGameImg = (folder,url) => {
+  return new URL(`/src/assets/images/${folder}/${url}.webp`, import.meta.url)
     .href;
 };
 
+
 onMounted(() => {
   setHallList();
+  getDw();
 });
+
+
 </script>
 <style lang="scss" scoped>
 @import "@/scss/method.scss";

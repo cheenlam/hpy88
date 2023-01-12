@@ -2,7 +2,7 @@
   <div class="header">
     <div class="inner" :class="{'login' : isLogin}">
       <div class="hd_left">
-        <router-link to="/home" class="logo">
+        <router-link to="/Home" class="logo">
           <img src="@/assets/images/logo_row.webp" alt="logo" />
         </router-link>
         <div class="hd_menu">

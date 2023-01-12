@@ -1,185 +1,222 @@
 [
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_01",
         "title": "加托卡卡之门",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20gatotgates&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_02",
         "title": "龙之英雄",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20drgbless&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_03",
         "title": "好运兔5",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysrabbits&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_04",
         "title": "星光圣诞",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20schristmas&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_05",
         "title": "幸运钓鱼",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysluckyfish&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_06",
         "title": "斯巴达之盾",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20sparta&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_07",
         "title": "海妖2",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20kraken2&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_08",
         "title": "海盗黄金时代",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20mtreasure&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_09",
         "title": "塞伦盖蒂的宝石",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20lcount&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_10",
         "title": "高耸的财富",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20theights&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_11",
         "title": "火鸟精灵",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysconcoll&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_12",
         "title": "阿斯加德王国",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20asgard&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_13",
         "title": "圣诞老人的礼物",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20porbs&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_14",
         "title": "阿兹特克烈焰",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs25kfruit&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_15",
         "title": "旋转和得分",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysfrywld&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_16",
         "title": "图坦卡蒙之书",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs10tut&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_17",
         "title": "战神之剑",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20swordofares&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_18",
         "title": "老金矿",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysoldminer&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_19",
         "title": "狂野跳跃",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20mparty&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_20",
         "title": "金沙之书",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysbook&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_21",
         "title": "英雄传说",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswayslofhero&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_22",
         "title": "炙手可热5",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs5strh&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_23",
         "title": "死亡乘数",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20muertos&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_24",
         "title": "糖果之星",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysstrwild&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_25",
         "title": "黑牛",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20trswild2&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_26",
         "title": "糖果冲刺",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20sugarrush&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_27",
         "title": "命运夫人",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswaysmadame&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_28",
         "title": "顺势而为",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20underground&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_29",
         "title": "奥林匹斯之门",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20olympgate&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_30",
         "title": "星光公主",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20starlight&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_31",
         "title": "甜蜜富矿",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20fruitsw&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_32",
         "title": "雷神之威",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswayshammthor&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_33",
         "title": "金字塔富矿",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20pbonanza&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_34",
         "title": "阿兹特克宝石",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs5aztecgems&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_35",
         "title": "黄金富矿",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs20bonzgold&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_36",
         "title": "狮子会5",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vswayslions&lang=en&cur=IDR&lobbyUrl=js://window.close()"
     },
     {
+        "folder":"dailyWins",
         "imgSrc": "dw_37",
         "title": "狂野西部",
         "link": "http://demogamesfree-asia.pragmaticplay.net/gs2c/openGame.do?gameSymbol=vs40wildwest&lang=en&cur=IDR&lobbyUrl=js://window.close()"

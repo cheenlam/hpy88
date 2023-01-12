@@ -48,7 +48,7 @@ const marqueeStart = async () => {
         const data = res.data.list;
         data.forEach((item) => {
           item.style = 0;
-          item.styleTxt = "系統";
+          item.styleTxt = "优惠活动";
           marquee.value.push(item);
         });
       }
@@ -63,7 +63,7 @@ const marqueeStart = async () => {
         const data = res.data.list;
         data.forEach((item) => {
           item.style = 1;
-          item.styleTxt = "赛事";
+          item.styleTxt = "公告";
           marquee.value.push(item);
         });
       }

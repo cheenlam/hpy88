@@ -44,12 +44,11 @@ export function apiLogin(account, password) {
     });
 }
 
-// 取得會員資料
-export function apiGetUserMsg(token) {
-    const data = JSON.stringify({token});
+// 系統公告
+export function apiGetAnnouncementData() {
     return requestService({
-        url: "http://api.cckgame.com/api/profile",
-        method: "post",data
+        url: "https://back.hpy88.net/api/announcement",
+        method: "post"
     }).then((response) => {
         if (response.status === 200) {
             return response.data;
@@ -60,9 +59,20 @@ export function apiGetUserMsg(token) {
     });
 }
 
-
-
-
+// 賽事公告
+export function apiGetActivityData() {
+    return requestService({
+        url: "https://back.hpy88.net/api/activity",
+        method: "post"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
 
 
 // 取得上方選單內容
@@ -80,35 +90,7 @@ export function getTopMenu() {
     });
 }
 
-// 系統公告
-export function apiGetAnnouncementData() {
-    return requestService({
-        url: "http://api.cckgame.com/api/announcement",
-        method: "post"
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
 
-// 賽事公告
-export function apiGetActivityData() {
-    return requestService({
-        url: "http://api.cckgame.com/api/activity",
-        method: "post"
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
 
 // 取得遊戲大廳清單
 export function getHallList() {
@@ -159,6 +141,36 @@ export function getFaqsList() {
 export function getDwGames() {
     return requestService({
         url: "/json/dwGame.json",
+        method: "get"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+// 取得PG遊戲
+export function getPgSlot() {
+    return requestService({
+        url: "/json/pgSlot.json",
+        method: "get"
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+// 取得KA遊戲
+export function getKaSlot() {
+    return requestService({
+        url: "/json/kaSlot.json",
         method: "get"
     }).then((response) => {
         if (response.status === 200) {
@@ -253,7 +265,21 @@ export function getDwGames() {
 //   });
 // }
 
-
+// 取得會員資料
+export function apiGetUserMsg(token) {
+    const data = JSON.stringify({token});
+    return requestService({
+        url: "http://api.cckgame.com/api/profile",
+        method: "post",data
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
 
 
 
