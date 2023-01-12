@@ -15,6 +15,7 @@
             :stringArray="marquee"
             gap="35px"
             :waitTime="1000"
+            @renewList = "renewList"
           ></Marquee>
         </div>
         <!-- 現在日期與時間 -->
@@ -38,10 +39,11 @@ const marquee = ref([]);
 const nowTime = ref("");
 const nowDay = ref("");
 const nowTimer = ref(null);
-const marqueeTimer = ref(null);
+// const marqueeTimer = ref(null);
 
 // 跑馬燈
 const marqueeStart = async () => {
+  marquee.value = [];
   await apiGetActivityData()
     .then((res) => {
       if (res.code === 200) {
@@ -71,7 +73,6 @@ const marqueeStart = async () => {
     .catch((err) => {
       console.log(err);
     });
-
   marquee.value = [...new Set(marquee.value)];
 };
 
@@ -85,10 +86,14 @@ const nowTimes = () => {
     nowDay.value = timeFormate(new Date()).nowDay;
   }, 1000);
 
-  marqueeTimer.value = setInterval(() => {
-    marqueeStart();
-  }, 1000 * 60 * 5);
+  // marqueeTimer.value = setInterval(() => {
+  //   marqueeStart();
+  // }, 1000 * 60 * 5);
 };
+
+const renewList = () => {
+  marqueeStart();
+}
 
 const init = onMounted(async () => {
   nowTimes();
@@ -98,9 +103,9 @@ const init = onMounted(async () => {
 // 移除定時器
 onUnmounted(() => {
   clearInterval(nowTimer.value);
-  clearInterval(marqueeTimer.value);
+  // clearInterval(marqueeTimer.value);
   nowTimer.value = null;
-  marqueeTimer.value = null;
+  // marqueeTimer.value = null;
 });
 </script>
 

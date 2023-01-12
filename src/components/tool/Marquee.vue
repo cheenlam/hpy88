@@ -23,6 +23,7 @@
 <script>
 import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 export default {
+  emits: ["renewList"],
   props: {
     // 傳遞過來的字串陣列
     stringArray: {
@@ -55,7 +56,7 @@ export default {
       default: true,
     },
   },
-  setup(props) {
+  setup(props,{ emit }) {
     const isScrolling = ref(true);
     const timer = ref(null);
     const outBox = ref(null);
@@ -88,6 +89,8 @@ export default {
         box.value.style.transform = `translateX(${x.value}px)`;
         x.value -= props.movePx;
         if (-x.value >= totalChildWidth) {
+          emit("renewList", true);
+
           // 撥放完之後就開始重新撥放
           x.value = startX;
           index.value = 0;
