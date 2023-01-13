@@ -70,7 +70,7 @@ const routes = [
         },
       },
       {
-        path: "Anns",
+        path: "Anns/:id",
         name: "Anns",
         component: Anns,
         meta: {

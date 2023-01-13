@@ -10,7 +10,7 @@
               :class="{ active: currentTab == item }"
               @click="currentTab = item"
             >
-              {{ item === "anncmnt" ? "公告" : "优惠活动" }}
+            <router-link :to="/Anns/ + item"> {{ item === "anncmnt" ? "公告" : "优惠活动" }}</router-link>
             </li>
           </ul>
         </div>
@@ -141,12 +141,14 @@
   </template>
   
   <script setup>
+  import { useRoute } from "vue-router";
   import { onMounted, ref, reactive } from "vue";
   import { apiGetAnnouncementData, apiGetActivityData } from "@/api/api";
   import { reOneWeek, reOneMonth } from "@/utils/method.js";
   
   const tabs = ref(["anncmnt", "activity"]);
-  const currentTab = ref("anncmnt");
+  const route = useRoute();
+  const currentTab = ref("");
   const AnnouncementData = ref([]);
   const ActivityData = ref([]);
   const form = reactive({
@@ -250,11 +252,27 @@
         console.log(err);
       });
   };
-  
+
+  // 更改內容選擇
+  const chgCnt = () => {
+    let startOpen = localStorage.getItem('annOpen');
+    switch (route.params.id) {
+      case "anncmnt":
+      currentTab.value = "anncmnt";
+      if(startOpen != null){ AnnouncementData.value[startOpen].isOpen = true;};
+      break;
+      case "activity":
+      currentTab.value = "activity";
+      if(startOpen != null){ ActivityData.value[startOpen].isOpen = true; };
+      break;
+    }
+  };
+
   const init = onMounted(async () => {
     await getAnncmnt();
     await getActivity();
-  
+    chgCnt();
+    localStorage.removeItem('annOpen');
     window.addEventListener("resize", () => { selDateSw.value = false });
   });
   </script>

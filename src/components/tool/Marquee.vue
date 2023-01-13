@@ -6,11 +6,10 @@
       @mouseenter="mouseenter"
       @mouseleave="mouseleave"
     >
-    <router-link to="/Anns">
+    <router-link :to="item.hrefSort"  v-for="(item, index) in stringArray"
+        :key="index" @click="setAnnList(item.idx)">
       <span
         ref="marqueeRefs"
-        v-for="(item, index) in stringArray"
-        :key="index"
         :style="{
           paddingRight: gap,
         }"
@@ -123,6 +122,11 @@ export default {
       isScrolling.value = true;
     };
 
+    // 設定該廣告開啟序列
+    const setAnnList = (index) => {
+      localStorage.setItem('annOpen',index);
+    };
+
     onMounted(() => {
       nextTick(() => {
         renderDom();
@@ -146,6 +150,7 @@ export default {
       mouseenter,
       mouseleave,
       marqueeRefs,
+      setAnnList
     };
   },
 };

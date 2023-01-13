@@ -51,6 +51,8 @@ const marqueeStart = async () => {
         data.forEach((item) => {
           item.style = 0;
           item.styleTxt = "优惠活动";
+          item.hrefSort = "/Anns/activity";
+          item.idx = data.indexOf(item);
           marquee.value.push(item);
         });
       }
@@ -66,6 +68,8 @@ const marqueeStart = async () => {
         data.forEach((item) => {
           item.style = 1;
           item.styleTxt = "公告";
+          item.hrefSort = "/Anns/anncmnt";
+          item.idx = data.indexOf(item);
           marquee.value.push(item);
         });
       }
