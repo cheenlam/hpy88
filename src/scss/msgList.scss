@@ -1,0 +1,473 @@
+// 主要資訊
+.formBox {
+    width: 100%;
+    max-width: 1320px;
+    padding: 15px 10px;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    // 表格title
+    @at-root .formTitle {
+        height: 40px;
+        @include map-get(background-color, $colorStyle, blue, 06);
+        flex-shrink: 0;
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // 公告種類選擇
+        .selSort {
+            padding-right: 10px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            ul {
+                display: flex;
+                align-items: center;
+                li {
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 0 20px;
+                    color: #fff;
+                    font-size: 14px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: 0.3s;
+                    @include hover {
+                        &:hover {
+                            @include map-get(background-color, $colorStyle, blue, 07);
+                        }
+                    }
+                    &.active {
+                        @include map-get(background-color, $colorStyle, blue, 07);
+                    }
+                }
+            }
+        }
+        // 頂部工具列
+        .tool {
+            width: 100%;
+            display: flex;
+            padding: 0 10px;
+            justify-content: flex-end;
+        }
+        .icon {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            background: no-repeat top center / cover;
+            & + .icon {
+                margin-left: 12px;
+            }
+            &.ckBox {
+                background-image: url("@/assets/images/icon/checkBox.png");
+                &.on {
+                    background-position: bottom center;
+                }
+            }
+            &.delMail {
+                background-image: url("@/assets/images/icon/delete.png");
+            }
+            &.search {
+                background: no-repeat center / cover;
+                background-image: url("@/assets/images/icon/search.svg");
+                display: none;
+            }
+        }
+    }
+
+    // 搜尋選擇
+    @at-root .selDate {
+        height: 50px;
+        flex-shrink: 0;
+        margin: 3px 0;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        user-select: none;
+        .selectBox {
+            margin-right: 5px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            select {
+                width: 100%;
+                max-width: 130px;
+                height: 35px;
+                padding: 0 20px 0 5px;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                line-height: 20px;
+                color: #616263;
+            }
+            .dataChg {
+                height: 35px;
+                line-height: 35px;
+                padding: 0 10px;
+                color: #fff;
+                font-weight: bold;
+                border-radius: 5px;
+                font-size: 14px;
+                @include map-get(background-color, $colorStyle, blue, 06);
+                box-shadow: 0 -2px 2px #5034cc inset;
+                cursor: pointer;
+                transition: 0.3s;
+                &:active {
+                    transform: translateY(2px);
+                }
+            }
+        }
+        .inputBox {
+            margin-right: 5px;
+            display: flex;
+            align-items: center;
+            input {
+                width: 100%;
+                max-width: 130px;
+                height: 35px;
+                padding: 0 5px;
+                border-radius: 3px;
+                border: 1px solid;
+                @include map-get(border-color, $colorStyle, blue, 06);
+                font-size: 14px;
+                line-height: 20px;
+                color: #616263;
+            }
+            span {
+                padding: 0 8px;
+                font-size: 14px;
+            }
+        }
+        button {
+            height: 35px;
+            padding: 0 20px;
+            @include fullNone;
+            @include map-get(background-color, $colorStyle, blue, 06);
+            box-shadow: 0 -2px 2px #5034cc inset;
+            color: #fff;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            font-size: 14px;
+            font-weight: bold;
+            flex-shrink: 0;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: 0.3s;
+            @include hover {
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            transition: 0.3s;
+            &:active {
+                transform: translateY(2px);
+            }
+        }
+    }
+
+    // 訊息列表 (通告 & 信箱)
+    @at-root .msgList {
+        font-size: 14px;
+        .paginator {
+            height: 30px;
+            padding: 0 0 8px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .msg_tb {
+            overflow-y: auto;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .noData {
+            width: 100%;
+            padding: 35px 0;
+            text-align: center;
+            color: #7aadf0;
+            letter-spacing: 1px;
+            font-weight: bold;
+            .icon {
+                width: 80px;
+                margin: 0 auto 5px;
+            }
+        }
+
+        table {
+            width: 100%;
+            th {
+                padding: 8px 5px;
+                @include map-get(background-color, $colorStyle, blue, 06);
+                color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 1px;
+                position: relative;
+                & + th {
+                    &::before {
+                        content: "";
+                        width: 1px;
+                        height: 100%;
+                        background-color: #fff;
+                        position: absolute;
+                        @include pos(tl, 0);
+                    }
+                }
+            }
+            td {
+                min-width: 120px;
+                padding: 0 10px;
+                color: #777;
+                opacity: 0.9;
+                &.time {
+                    text-align: center;
+                }
+            }
+        }
+        .msg_title {
+            font-weight: bold;
+            .subject {
+                display: flex;
+                align-items: center;
+                p {
+                    justify-content: flex-start;
+                }
+            }
+
+            .state {
+                width: 60px;
+                margin-right: 10px;
+                font-style: 0;
+                display: flex;
+                flex-shrink: 0;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+            }
+            .mainSel {
+                width: 22px;
+                height: 22px;
+                background: no-repeat url("@/assets/images/icon/checkBox.png") top center / cover;
+                &.on {
+                    background-position: bottom center;
+                }
+            }
+            .isRead {
+                width: 22px;
+                height: 22px;
+                margin-left: 3px;
+                background: no-repeat url("@/assets/images/icon/letter.svg") center / cover;
+                opacity: 0.8;
+                &.on {
+                    background-image: url("@/assets/images/icon/letter_open.svg");
+                }
+            }
+        }
+        .msg_main {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            box-shadow: 0 2px 5px #21106d;
+        }
+        .itemMsg {
+            cursor: pointer;
+            user-select: none;
+            @include map-get(background-color, $colorStyle, blue, 04);
+            &:nth-child(4n) {
+                @include map-get(background-color, $colorStyle, blue, 05);
+            }
+            p {
+                width: 100%;
+                padding: 12px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            span {
+                @include txtChip(1);
+            }
+        }
+        .itemCnt {
+            line-height: 20px;
+            position: relative;
+            td {
+                padding: 0 0 10px;
+            }
+            li {
+                width: 100%;
+                margin-top: 15px;
+                padding-top: 5px;
+                border: 1px solid #c5c5c5;
+                position: relative;
+                &:nth-child(2) {
+                    p {
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+            .itemCnt_title {
+                padding: 0 10px;
+                position: absolute;
+                @include pos(tl, -10px, 10px);
+                background-color: #fff;
+                font-size: 14px;
+                color: #999;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            p {
+                padding: 8px 10px;
+            }
+        }
+    }
+
+    // ====== RWD設置 ======
+    @include rwd(700) {
+        .msgList {
+            padding: 10px 0;
+            table {
+                display: flex;
+                flex-direction: column;
+            }
+            .noData {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .msg_main {
+                display: flex;
+                flex-wrap: wrap;
+                th {
+                    width: 50%;
+                    &:nth-child(1) {
+                        width: 100%;
+                        border-bottom: 1px solid #fff;
+                    }
+                    &:nth-child(2)::before {
+                        display: none;
+                    }
+                }
+            }
+            .itemMsg {
+                height: auto;
+                display: flex;
+                flex-wrap: wrap;
+                border: 1px solid #ccc;
+                &:nth-child(n + 3) {
+                    margin-top: 8px;
+                }
+                .msg_title {
+                    width: 100%;
+                }
+
+                .time {
+                    width: 50%;
+                    @include map-get(background-color, $colorStyle, blue, 07);
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    p {
+                        width: 100%;
+                        padding: 8px 0;
+                        font-weight: bold;
+                    }
+                    & + .time {
+                        position: relative;
+                        &::before {
+                            content: "";
+                            width: 1px;
+                            height: 100%;
+                            background-color: #fff;
+                            position: absolute;
+                            @include pos(tl, 0);
+                        }
+                    }
+                }
+            }
+            .itemCnt {
+                td {
+                    display: flex;
+                }
+                ul {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @include rwd(610) {
+        .formTitle {
+            .icon {
+                &.search {
+                    display: block;
+                }
+            }
+        }
+        .selDate {
+            width: calc(100% - 10px);
+            height: auto;
+            padding: 25px 10px 15px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: unset;
+            margin: auto;
+            box-shadow: 2px 2px 4px #000;
+            border-radius: 5px;
+            position: absolute;
+            @include pos(tlr, 60px, 0, 0);
+            z-index: 10;
+
+            display: none;
+            &.on {
+                display: flex;
+                transform-origin: top center;
+                animation: openSel 0.3s forwards;
+            }
+            .inputBox {
+                margin: 0 0 20px;
+                input {
+                    max-width: 100%;
+                    flex: 1;
+                    color: #616263;
+                }
+            }
+            .selectBox {
+                margin: 0 0 5px;
+                select {
+                    max-width: 100%;
+                    flex: 1;
+                    color: #616263;
+                }
+            }
+        }
+        .msgList {
+            height: 100%;
+        }
+    }
+
+    // ====== 移動裝置設置 ======
+
+    @keyframes openSel {
+        0% {
+            opacity: 0;
+            transform: scaleY(0.2);
+        }
+        100% {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+}
+
+

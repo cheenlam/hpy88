@@ -6,7 +6,7 @@ import Casino from "@/views/Casino.vue";
 import Computer from "@/views/Computer.vue";
 import Activity from "@/views/Activity.vue";
 import InfoCentre from "@/views/InfoCentre.vue";
-
+import Anns from "@/views/Anns.vue";
 
 const routes = [
   {
@@ -66,6 +66,15 @@ const routes = [
         component: InfoCentre,
         meta: {
           title: "InfoCentre page title",
+          menuIdx: -1
+        },
+      },
+      {
+        path: "Anns",
+        name: "Anns",
+        component: Anns,
+        meta: {
+          title: "Anns page title",
           menuIdx: -1
         },
       },

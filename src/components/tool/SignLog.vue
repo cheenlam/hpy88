@@ -8,44 +8,44 @@
 
         <!-- 登入 -->
         <template v-if="signNum == 0">
-          <div class="sortTitle">登入</div>
-          <div class="iptBox">
-            <form> 
-              <!-- 登入 (帳號) -->
-              <label>
-                <input
-                type="text"
-                placeholder="请填写4位数以上英数字帐户名称"
-                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
-                autocomplete="false"
-                v-model="loginVal.account"
-                @keyup="ckloginVal()"
-              />
-              <p class="errorTxt" v-if="loginVal.errorSw">帐户或密码错误</p>
-              </label>
-              <!-- 登入 (密碼) -->
-              <label>
-                <input
-                type="password"
-                placeholder="请填写5位数以上英数字账户密码"
-                onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
-                autocomplete="new-password"
-                v-model="loginVal.pwd"
-                @keyup="ckloginVal()"
-              />
-              </label>
-            </form>
-          </div>
-          <div class="jumpSort" @click="signNum = 2">忘记密码</div>
+          <form @submit.prevent="false"> 
+            <div class="sortTitle">登入</div>
+            <div class="iptBox"> 
+                <!-- 登入 (帳號) -->
+                <label>
+                  <input
+                  type="text"
+                  placeholder="请填写4位数以上英数字帐户名称"
+                  onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                  autocomplete="false"
+                  v-model="loginVal.account"
+                  @keyup="ckloginVal()"
+                />
+                <p class="errorTxt" v-if="loginVal.errorSw">帐户或密码错误</p>
+                </label>
+                <!-- 登入 (密碼) -->
+                <label>
+                  <input
+                  type="password"
+                  placeholder="请填写5位数以上英数字账户密码"
+                  onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
+                  autocomplete="new-password"
+                  v-model="loginVal.pwd"
+                  @keyup="ckloginVal()"
+                />
+                </label>
+            </div>
+            <div class="jumpSort" @click="signNum = 2">忘记密码</div>
 
-          <div class="btnBox">
-            <button @click="loginMember()" :disabled="loginVal.disabled">登入账户</button>
-            <p>
-              您是HPY88的新用戶？<span class="jumpSort" @click="signNum = 1"
-                >创建账户</span
-              >
-            </p>
-          </div>
+            <div class="btnBox">
+              <button @click="loginMember()" :disabled="loginVal.disabled">登入账户</button>
+              <p>
+                您是HPY88的新用戶？<span class="jumpSort" @click="signNum = 1"
+                  >创建账户</span
+                >
+              </p>
+            </div>
+          </form>
         </template>
 
         <!-- 註冊 -->

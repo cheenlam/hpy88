@@ -57,9 +57,9 @@
           <div class="title">遊戲類別</div>
           <ul>
             <ul>
-              <li><router-link to="/Sports">體育博彩</router-link></li>
-              <li><router-link to="/Casino">真人娛樂</router-link></li>
-              <li><router-link to="/Computer">電子遊戲</router-link></li>
+              <li><router-link to="/Sports">体育博彩</router-link></li>
+              <li><router-link to="/Casino">真人娱乐</router-link></li>
+              <li><router-link to="/Computer">电子游戏</router-link></li>
             </ul>
           </ul>
         </div>
@@ -69,8 +69,8 @@
             <ul>
               <li><router-link to="">關於我們</router-link></li>
               <li><router-link to="">聯絡我們</router-link></li>
-              <li><router-link to="/InfoCentre/faqs">常見問題</router-link></li>
-              <li><router-link to="/InfoCentre/terms">條款與條規</router-link></li>
+              <li><router-link to="/InfoCentre/faqs">常见问题</router-link></li>
+              <li><router-link to="/InfoCentre/terms">条款与条规</router-link></li>
             </ul>
           </ul>
         </div>
@@ -79,13 +79,13 @@
       <!-- 網站連結min -->
       <div class="ft_linkMin">
         <ul>
-          <li><router-link to="/Sports">體育博彩</router-link></li>
-          <li><router-link to="/Casino">真人娛樂</router-link></li>
-          <li><router-link to="/Computer">電子遊戲</router-link></li>
+          <li><router-link to="/Sports">体育博彩</router-link></li>
+          <li><router-link to="/Casino">真人娱乐</router-link></li>
+          <li><router-link to="/Computer">电子游戏</router-link></li>
           <li><router-link to="">關於我們</router-link></li>
           <li><router-link to="">聯絡我們</router-link></li>
-          <li><router-link to="">常見問題</router-link></li>
-          <li><router-link to="">條款與條規</router-link></li>
+          <li><router-link to="/InfoCentre/faqs">常见问题</router-link></li>
+          <li><router-link to="/InfoCentre/terms">条款与条规</router-link></li>
         </ul>
       </div>
     </div>

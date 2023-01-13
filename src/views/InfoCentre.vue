@@ -168,38 +168,31 @@ onMounted(() => {
 
 .infoCentre {
   max-width: 1320px;
-  padding: 20px 10px 100px;
+  padding: 15px 10px 100px;
   margin: auto;
   font-size: 14px;
   @at-root .contentSel {
+    @include map-get(background-color, $colorStyle, blue, 06);
+    color: #fff;
     ul {
       display: flex;
-      gap: 5px;
     }
     li {
-      border-radius: 5px;
       cursor: pointer;
-      filter: grayscale(100%);
-      &::before {
-        content: "";
-        width: 0%;
-        height: 2px;
-        margin: auto;
-        background-color: #8eb5ec;
-        position: absolute;
-        @include pos(blr, 0);
-        transition: 0.5s;
-      }
+      transition: .3s;
       &.on {
-        filter: grayscale(0%);
-        color: #3764a3;
-        &::before {
-          width: 90%;
-        }
+        @include map-get(background-color, $colorStyle, blue, 07);
+      }
+      @include hover {
+          &:hover {
+            @include map-get(background-color, $colorStyle, blue, 07);
+          }
       }
       a {
-        padding: 8px 15px;
-        display: inline-block;
+        height: 40px;
+        padding: 0px 15px;   
+        display: flex;
+        align-items: center;
       }
     }
   }

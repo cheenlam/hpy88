@@ -6,6 +6,7 @@
       @mouseenter="mouseenter"
       @mouseleave="mouseleave"
     >
+    <router-link to="/Anns">
       <span
         ref="marqueeRefs"
         v-for="(item, index) in stringArray"
@@ -17,6 +18,7 @@
           item.time_start
         }}] {{ item.title }}</span
       >
+    </router-link>
     </div>
   </div>
 </template>

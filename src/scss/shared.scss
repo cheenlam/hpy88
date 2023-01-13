@@ -1,11 +1,11 @@
 // 共用設定
 $oddsCont: (
     live: (
-        10: #531e03,
-        09: #ff6600,
-        08: #fd8b5c,
-        07: #f0cbb3,
-        06: #ffdbc3,
+        10: #0f3d75,
+        09: #205291,
+        08: #3770b6,
+        07: #5e97dd,
+        06: #85b9f8,
     ),
     generally: (
         10: #132848,
@@ -13,20 +13,29 @@ $oddsCont: (
         08: #e1e1e1,
         07: #f1f1f1,
     ),
-    refresh: #fc4a0a,
+    refresh: #08071f,
 );
 
-// 注單狀況改變
-$betState: (
-    close : #ff5b5b,
-    reopen : #ff8c3f,
-    change : #65a7fd,
-);
+$colorStyle : (
+    blue : (
+        10: #0f3b86,
+        09: #1e50a6,
+        08: #366ac4,
+        07: #7ab0f3,
+        06: #a2ccff,
+        05: #cde4ff,
+        04: #e4f1ff,
+    ),
+    grey: (
+        10: #333,
+        09: #555,
+        08: #777,
+        07: #999,
+        06: #bbb,
+        05: #ddd,
+        04: #eee,
+    )
+)
 
-
-$hdmenu:(
-    focus:#ff8a00,
-    bgc:#021a5e,
-);
 
 
