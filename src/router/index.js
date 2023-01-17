@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { apiGetMessageListData } from "@/api/api";
 import MainView from "@/views/MainView.vue";
 import Home from "@/views/Home.vue";
 import Sports from "@/views/Sports.vue";
@@ -7,6 +8,11 @@ import Computer from "@/views/Computer.vue";
 import Activity from "@/views/Activity.vue";
 import InfoCentre from "@/views/InfoCentre.vue";
 import Anns from "@/views/Anns.vue";
+import MyWallet from "@/views/MyWallet.vue";
+import MyLetter from "@/views/MyLetter.vue";
+import TransHistory from "@/views/TransHistory.vue";
+import BetHistory from "@/views/BetHistory.vue";
+
 
 const routes = [
   {
@@ -20,7 +26,7 @@ const routes = [
         name: "Home",
         component: Home,
         meta: {
-          title: "Home page title",
+          title: "HPY88｜首页",
           menuIdx: 0
         },
       },
@@ -29,7 +35,7 @@ const routes = [
         name: "Sports",
         component: Sports,
         meta: {
-          title: "Sports page title",
+          title: "HPY88｜体育博彩",
           menuIdx: 1
         },
       },
@@ -38,7 +44,7 @@ const routes = [
         name: "Casino",
         component: Casino,
         meta: {
-          title: "Casino page title",
+          title: "HPY88｜真人娱乐",
           menuIdx: 2
         },
       },
@@ -47,7 +53,7 @@ const routes = [
         name: "Computer",
         component: Computer,
         meta: {
-          title: "Computer page title",
+          title: "HPY88｜电子游戏",
           menuIdx: 3
         },
       },
@@ -56,7 +62,7 @@ const routes = [
         name: "Activity",
         component: Activity,
         meta: {
-          title: "Activity page title",
+          title: "HPY88｜优惠活动",
           menuIdx: 4
         },
       },
@@ -65,7 +71,7 @@ const routes = [
         name: "InfoCentre",
         component: InfoCentre,
         meta: {
-          title: "InfoCentre page title",
+          title: "HPY88｜常见问题与条款",
           menuIdx: -1
         },
       },
@@ -74,8 +80,48 @@ const routes = [
         name: "Anns",
         component: Anns,
         meta: {
-          title: "Anns page title",
+          title: "HPY88｜公告",
           menuIdx: -1
+        },
+      },
+      {
+        path: "MyWallet",
+        name: "MyWallet",
+        component: MyWallet,
+        meta: {
+          title: "HPY88｜我的钱包",
+          menuIdx: -1,
+          auth:true 
+        },
+      },
+      {
+        path: "MyLetter",
+        name: "MyLetter",
+        component: MyLetter,
+        meta: {
+          title: "HPY88｜我的信件",
+          menuIdx: -1,
+          auth:true 
+        },
+      },
+      {
+        path: "TransHistory",
+        name: "TransHistory",
+        component: TransHistory,
+        meta: {
+          title: "HPY88｜交易纪录",
+          menuIdx: -1,
+          auth:true 
+        },
+      },
+      {
+        path: "BetHistory",
+        name: "BetHistory",
+        component: BetHistory,
+        meta: {
+          title: "HPY88｜投注纪录",
+          menuIdx: -1,
+          auth:true 
         },
       },
     ],
@@ -100,6 +146,31 @@ router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
   sessionStorage.setItem('menuIdx',to.meta.menuIdx);
 
+  if(to.matched.some( m => m.meta.auth)){
+    const token = sessionStorage.getItem('token');
+    if(token == null || token == ''){
+      // 未登入重新導向首頁
+      next({path:'/'});
+      sessionStorage.setItem('signSw','roterOff');
+      return;
+    }else{
+      apiGetMessageListData(token).then((res) => { 
+       if(res.code == 200){
+        next();
+        document.title = to.meta.title;
+       }else{
+        next({path:'/'});
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('mailNotRead');
+        setTimeout(() => {
+          location = location;
+        }, 100);
+       }
+      }).catch((err) => {});
+      return;
+    }
+  }
+
   if (to.meta.title) {
     document.title = to.meta.title;
   }
@@ -110,5 +181,9 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+
+
+
 
 export default router;

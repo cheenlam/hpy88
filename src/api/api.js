@@ -74,6 +74,67 @@ export function apiGetActivityData() {
     });
 }
 
+// 信箱
+export function apiGetMessageListData(token) {
+    const data = JSON.stringify({
+        token,
+        per_page: 999999999,
+    });
+    return requestService({
+        url: "https://back.hpy88.net/api/sitemessagelist",
+        method: "post",
+        data
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+// 更新郵件已讀狀態
+export function apiChgMainStatus(token,id){
+    const data = {
+        token: token,
+        msg_id: id
+    };
+    return requestService({
+        url: "https://back.hpy88.net/api/sitemessagestatus",
+        method: "post",
+        data
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+// 刪除郵件
+export function apiDelMain(token,id){
+    const data = {
+        token: token,
+        msg_id: id
+    };
+    return requestService({
+        url: "https://back.hpy88.net/api/sitemessagedelete",
+        method: "post",
+        data
+    }).then((response) => {
+        if (response.status === 200) {
+            return response.data;
+        } else {
+            console.log(response.data);
+            return;
+        }
+    });
+}
+
+
 
 // 取得上方選單內容
 export function getTopMenu() {
@@ -283,65 +344,7 @@ export function apiGetUserMsg(token) {
 
 
 
-// 信箱
-export function apiGetMessageListData(token) {
-    const data = JSON.stringify({
-        token,
-        per_page: 999999999,
-    });
-    return requestService({
-        url: "http://api.cckgame.com/api/sitemessagelist",
-        method: "post",
-        data
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
 
-// 更新郵件已讀狀態
-export function apiChgMainStatus(token,id){
-    const data = {
-        token: token,
-        msg_id: id
-    };
-    return requestService({
-        url: "http://api.cckgame.com/api/sitemessagestatus",
-        method: "post",
-        data
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
-
-// 刪除郵件
-export function apiDelMain(token,id){
-    const data = {
-        token: token,
-        msg_id: id
-    };
-    return requestService({
-        url: "http://api.cckgame.com/api/sitemessagedelete",
-        method: "post",
-        data
-    }).then((response) => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            console.log(response.data);
-            return;
-        }
-    });
-}
 
 // Menu資料[體育]
 export function apiGetMenu() {

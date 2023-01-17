@@ -186,12 +186,13 @@
             display: flex;
             justify-content: flex-end;
         }
-        .msg_tb {
-            overflow-y: auto;
-            &::-webkit-scrollbar {
-                display: none;
-            }
-        }
+        // .msg_tb {
+        //     max-height: calc(100vh - 400px);
+        //     overflow-y: auto;
+        //     &::-webkit-scrollbar {
+        //         display: none;
+        //     }
+        // }
         .noData {
             width: 100%;
             padding: 35px 0;

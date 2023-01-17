@@ -1,144 +1,143 @@
 <template>
-    <div class="formBox">
-      <div class="formTitle">
-        <!-- 公告種類選擇 -->
-        <div class="selSort">
-          <ul>
-            <li
-              v-for="item in tabs"
-              :key="item"
-              :class="{ active: currentTab == item }"
-              @click="currentTab = item"
-            >
-            <router-link :to="/Anns/ + item"> {{ item === "anncmnt" ? "公告" : "优惠活动" }}</router-link>
-            </li>
-          </ul>
-        </div>
-        <!-- 頂部工具列 -->
-        <div class="tool">
-          <div class="icon search" @click="selDateSw = !selDateSw"></div>
-        </div>
+  <div class="formBox">
+    <div class="formTitle">
+      <!-- 公告種類選擇 -->
+      <div class="selSort">
+        <ul>
+          <li
+            v-for="item in tabs"
+            :key="item"
+            :class="{ active: currentTab == item }"
+            @click="currentTab = item"
+          >
+          <router-link :to="/Anns/ + item"> {{ item === "anncmnt" ? "公告" : "优惠活动" }}</router-link>
+          </li>
+        </ul>
       </div>
-  
-      <!-- 日期選擇 -->
-      <div class="selDate" :class="{ on: selDateSw }">
-        <div class="selectBox">
-          <div class="dataChg" @click="chgDate(0)">今</div>
-          <div class="dataChg" @click="chgDate(1)">周</div>
-          <div class="dataChg" @click="chgDate(2)">月</div>
-        </div>
-        <div class="inputBox">
-          <input v-model="form.registerDateFrom" type="date" />
-          <span>至</span>
-          <input v-model="form.registerDateTo" type="date" />
-        </div>
-        <button type="submit" class="btn" @click="search">搜寻</button>
-      </div>
-  
-      <!-- 訊息列表 -->
-      <div class="msgList" v-if="currentTab === 'anncmnt'">
-        <div class="msg_tb">
-          <table>
-            <!-- 標頭 -->
-            <tr class="msg_main">
-              <th width="50%">公告主旨</th>
-              <th width="22%">生效时间</th>
-              <th width="22%">失效时间</th>
-            </tr>
-            <!-- 沒有公告資料 -->
-            <tr v-if="AnnouncementData.length == 0">
-              <td colspan="3" class="noData">
-                <div class="icon">
-                  <img src="@/assets/images/noMsg.svg" alt="no message" />
-                </div>
-                <p>暂无任何公告</p>
-              </td>
-            </tr>
-            <!-- 公告資料 -->
-            <template
-              v-for="(item, index) in AnnouncementData"
-              :key="index"
-              v-else
-            >
-              <tr class="itemMsg" @click="item.isOpen = !item.isOpen">
-                <td class="msg_title">
-                  <div class="subject">
-                    <p><span>{{ item.title }}</span></p>
-                  </div>
-                </td>
-                <td class="time"><p>{{ item.time_start }}</p></td>
-                <td class="time"><p>{{ item.time_end }}</p></td>
-              </tr>
-              <tr class="itemCnt" v-show="item.isOpen">
-                <td colspan="3">
-                  <ul>
-                    <li>
-                      <div class="itemCnt_title">公告主旨</div>
-                      <p>{{ item.title }}</p>
-                    </li>
-                    <li>
-                      <div class="itemCnt_title">公告內容</div>
-                      <p v-html="item.content"></p>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            </template>
-          </table>
-        </div>
-      </div>
-    
-      <!-- 賽事公告列表 -->
-      <div class="msgList" v-if="currentTab === 'activity'">
-        <div class="msg_tb">
-          <table>
-            <!-- 標頭 -->
-            <tr class="msg_main">
-              <th width="50%">公告主旨</th>
-              <th width="22%">生效时间</th>
-              <th width="22%">失效时间</th>
-            </tr>
-            <!-- 沒有公告資料 -->
-            <tr v-if="ActivityData.length == 0">
-              <td colspan="3" class="noData">
-                <div class="icon">
-                  <img src="@/assets/images/noMsg.svg" alt="no message" />
-                </div>
-                <p>暂无任何公告</p>
-              </td>
-            </tr>
-            <!-- 公告資料 -->
-            <template v-for="(item, index) in ActivityData" :key="index" v-else>
-              <tr class="itemMsg" @click="item.isOpen = !item.isOpen">
-                <td class="msg_title">
-                  <div class="subject">
-                    <p><span>{{ item.title }}</span></p>
-                  </div>
-                </td>
-                <td class="time"><p>{{ item.time_start }}</p></td>
-                <td class="time"><p>{{ item.time_end }}</p></td>
-              </tr>
-              <tr class="itemCnt" v-show="item.isOpen">
-                <td colspan="3">
-                  <ul>
-                    <li>
-                      <div class="itemCnt_title">公告主旨</div>
-                      <p>{{ item.title }}</p>
-                    </li>
-                    <li>
-                      <div class="itemCnt_title">公告內容</div>
-                      <p v-html="item.content"></p>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            </template>
-          </table>
-        </div>
+      <!-- 頂部工具列 -->
+      <div class="tool">
+        <div class="icon search" @click="selDateSw = !selDateSw"></div>
       </div>
     </div>
 
-  </template>
+    <!-- 日期選擇 -->
+    <div class="selDate" :class="{ on: selDateSw }">
+      <div class="selectBox">
+        <div class="dataChg" @click="chgDate(0)">今</div>
+        <div class="dataChg" @click="chgDate(1)">周</div>
+        <div class="dataChg" @click="chgDate(2)">月</div>
+      </div>
+      <div class="inputBox">
+        <input v-model="form.registerDateFrom" type="date" />
+        <span>至</span>
+        <input v-model="form.registerDateTo" type="date" />
+      </div>
+      <button type="submit" class="btn" @click="search">搜寻</button>
+    </div>
+
+    <!-- 訊息列表 -->
+    <div class="msgList" v-if="currentTab === 'anncmnt'">
+      <div class="msg_tb">
+        <table>
+          <!-- 標頭 -->
+          <tr class="msg_main">
+            <th width="50%">公告主旨</th>
+            <th width="22%">生效时间</th>
+            <th width="22%">失效时间</th>
+          </tr>
+          <!-- 沒有公告資料 -->
+          <tr v-if="AnnouncementData.length == 0">
+            <td colspan="3" class="noData">
+              <div class="icon">
+                <img src="@/assets/images/noMsg.svg" alt="no message" />
+              </div>
+              <p>暂无任何公告</p>
+            </td>
+          </tr>
+          <!-- 公告資料 -->
+          <template
+            v-for="(item, index) in AnnouncementData"
+            :key="index"
+            v-else
+          >
+            <tr class="itemMsg" @click="item.isOpen = !item.isOpen">
+              <td class="msg_title">
+                <div class="subject">
+                  <p><span>{{ item.title }}</span></p>
+                </div>
+              </td>
+              <td class="time"><p>{{ item.time_start }}</p></td>
+              <td class="time"><p>{{ item.time_end }}</p></td>
+            </tr>
+            <tr class="itemCnt" v-show="item.isOpen">
+              <td colspan="3">
+                <ul>
+                  <li>
+                    <div class="itemCnt_title">公告主旨</div>
+                    <p>{{ item.title }}</p>
+                  </li>
+                  <li>
+                    <div class="itemCnt_title">公告內容</div>
+                    <p v-html="item.content"></p>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </template>
+        </table>
+      </div>
+    </div>
+  
+    <!-- 賽事公告列表 -->
+    <div class="msgList" v-if="currentTab === 'activity'">
+      <div class="msg_tb">
+        <table>
+          <!-- 標頭 -->
+          <tr class="msg_main">
+            <th width="50%">公告主旨</th>
+            <th width="22%">生效时间</th>
+            <th width="22%">失效时间</th>
+          </tr>
+          <!-- 沒有公告資料 -->
+          <tr v-if="ActivityData.length == 0">
+            <td colspan="3" class="noData">
+              <div class="icon">
+                <img src="@/assets/images/noMsg.svg" alt="no message" />
+              </div>
+              <p>暂无任何公告</p>
+            </td>
+          </tr>
+          <!-- 公告資料 -->
+          <template v-for="(item, index) in ActivityData" :key="index" v-else>
+            <tr class="itemMsg" @click="item.isOpen = !item.isOpen">
+              <td class="msg_title">
+                <div class="subject">
+                  <p><span>{{ item.title }}</span></p>
+                </div>
+              </td>
+              <td class="time"><p>{{ item.time_start }}</p></td>
+              <td class="time"><p>{{ item.time_end }}</p></td>
+            </tr>
+            <tr class="itemCnt" v-show="item.isOpen">
+              <td colspan="3">
+                <ul>
+                  <li>
+                    <div class="itemCnt_title">公告主旨</div>
+                    <p>{{ item.title }}</p>
+                  </li>
+                  <li>
+                    <div class="itemCnt_title">公告內容</div>
+                    <p v-html="item.content"></p>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </template>
+        </table>
+      </div>
+    </div>
+  </div>
+</template>
   
   <script setup>
   import { useRoute } from "vue-router";

@@ -1,5 +1,35 @@
 <template>
   <div class="header">
+    <div class="hdTool" v-if="isLogin">
+      <div class="toolList">
+        <ul>
+          <li>
+            <router-link to="/MyWallet">
+              <div class="icon">
+                <img src="@/assets/images/icon/wallet_w.svg" alt="我的钱包">
+              </div>
+              <p>钱包</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/MyLetter">
+              <div class="icon mail">
+                <img src="@/assets/images/icon/letter_w.svg" alt="我的信件">
+                <div class="num">{{mailNum}}</div>
+              </div>
+              <p>信箱</p>
+            </router-link>
+          </li>
+          <li class="record">
+            <div class="icon">
+              <img src="@/assets/images/icon/record_w.svg" alt="交易紀錄">
+             </div>
+             <router-link to="/TransHistory">交易纪录</router-link>
+             <router-link to="/BetHistory">投注纪录</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
     <div class="inner" :class="{'login' : isLogin}">
       <div class="hd_left">
         <router-link to="/Home" class="logo">
@@ -40,32 +70,39 @@
 
 <script setup>
 import { getTopMenu } from "@/api/api";
-import { onMounted, ref,nextTick } from "vue";
+import { onMounted, ref, nextTick, watch } from "vue";
 import SignLog from "@/components/tool/SignLog.vue";
-import { getToken } from "@/utils/cookies";
+import { apiGetMessageListData } from "@/api/api";
 
-const isLogin = ref(false)
+const isLogin = ref(false);
 const topMenu = ref([]);
 const menuIdx = ref(0);
+// 登入註冊彈窗
+const signSw = ref(false);
+const signNum = ref(0);
+// 未讀信件數量
+const mailNum = ref(0);
+const mailTimer = ref(null);
 
+
+// 取得menu
 const getMenu = () => {
   getTopMenu().then(function (response) {
     topMenu.value = response;
   });
 };
+
 // 修改menu狀態
 const chgMenuIdx = () => {
   menuIdx.value = sessionStorage.getItem('menuIdx');
 }
 
-// 登入註冊彈窗
-const signSw = ref(false);
-const signNum = ref(0);
 // 開啟登入註冊彈窗
 const openSign = (val) => {
   signSw.value = true;
   signNum.value = val;
 }
+
 // 關閉登入註冊彈窗
 const closeSign = () => {
   signSw.value = false;
@@ -80,16 +117,57 @@ const ckLogin = () => {
     isLogin.value = true;
   }
 }
+
 // 登入
 const signIn = (data) => {
   isLogin.value = data;
 }
+
 // 登出
 const signOut = () => {
   isLogin.value = false;
   sessionStorage.removeItem('token');
+  sessionStorage.removeItem('mailNotRead');
   location.href = '/'
 }
+
+// 取得未讀信件數量
+const getMailNotRead = async () => {
+  const token = sessionStorage.getItem('token');
+  await apiGetMessageListData(token)
+    .then((res) => {
+      let mailNotRead = [...res.data.list]
+      mailNotRead = mailNotRead.filter((item) => {
+        return (item.is_read == 0);
+      });
+
+      sessionStorage.setItem("mailNotRead",mailNotRead.length);
+    })
+    .catch((err) => {
+      signOut();
+    });
+};
+
+watch(
+  () => isLogin.value,(newValue, oldVale) => {
+    if(isLogin.value){
+      getMailNotRead();
+      mailTimer.value = setInterval(() => {
+        getMailNotRead();
+      },1000 * 60)
+    }else{
+      sessionStorage.removeItem('mailNotRead');
+      clearInterval(mailTimer.value)
+    }
+  },{ deep: true }
+);
+
+watch(
+  () => signSw.value,(newValue, oldVale) => {
+    sessionStorage.setItem('signSw',newValue);
+  },{ deep: true }
+);
+
 
 const init = onMounted(() => {
   getMenu();
@@ -101,6 +179,21 @@ const init = onMounted(() => {
     if (e.key == "menuIdx") {
       nextTick(() => {
         chgMenuIdx();
+      });
+    }
+
+    if (e.key == "signSw") {
+      nextTick(() => {
+        if(sessionStorage.getItem('signSw') == 'roterOff'){
+          signNum.value = 0;
+          signSw.value = true;
+        }
+      });
+    }
+
+    if (e.key == "mailNotRead") {
+      nextTick(() => {
+        mailNum.value = Number(sessionStorage.getItem('mailNotRead'));
       });
     }
   });
@@ -118,6 +211,62 @@ const init = onMounted(() => {
   font-size: 15px;
   background-color: #eef2fc;
   box-shadow: 0 2px 8px #a0a0a0;
+  .hdTool{
+    @include map-get(background-color, $colorStyle, blue, 08);
+    .toolList{
+      max-width: 1320px;
+      padding: 0 10px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      ul{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .icon{
+        width: 24px;
+        margin-right: 5px;
+        &.mail{
+          position: relative;
+          .num{
+            width: 20px;
+            height: 20px;
+            line-height: 21px;
+            text-align: center;
+            background-color: #ff0000;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+            left: -12px;
+            font-size: 12px;
+          }
+        }
+      }
+      a{
+        height: 40px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        font-size: 14px;
+      }
+
+      li{
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        a + a{
+          position: relative;
+          &::before{
+            content: '｜';
+            padding: 0 2px;
+          }
+        }
+      }  
+    }
+    
+  }
 
   .inner {
     max-width: 1320px;
