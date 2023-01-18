@@ -1,14 +1,14 @@
 <template>
   <div class="timerBox">
     <div class="lastDay">
-        <p>{{timeVal.day}}</p>
+        <p>{{timeVal.day < 0 ? '0' : timeVal.day}}</p>
         <span>Day</span>
     </div>
     <div class="lastTime">
       <ul>
-        <li><p>{{timeVal.hour}}</p></li>
-        <li><p>{{timeVal.min}}</p></li>
-        <li><p>{{timeVal.sec}}</p></li>
+        <li><p>{{timeVal.hour < 0 ? '00' : timeVal.hour}}</p></li>
+        <li><p>{{timeVal.min < 0 ? '00' : timeVal.min}}</p></li>
+        <li><p>{{timeVal.sec < 0 ? '00' : timeVal.sec}}</p></li>
       </ul>
     </div>
   </div>
