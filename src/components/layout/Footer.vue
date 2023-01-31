@@ -94,6 +94,15 @@
       <p>&copy; Copyright 2022 HPY88</p>
     </div>
   </div>
+
+  <!-- tawk客服軟體 -->
+  <div class="tawkBtn" @click="tawkSw = !tawkSw">
+    <img src="@/assets/images/icon/talk_w.svg" alt="tawkBtn" />
+  </div>
+  <div class="tawkBox" :class="{'on' : tawkSw}">
+      <div class="tawkClose" @click="tawkSw = false"></div>
+      <div id='tawk_63c899b1c2f1ac1e202e7000' class="tawkDialog"></div>
+  </div>
 </template>
 
 
@@ -102,6 +111,8 @@
 import { onMounted, ref } from "vue";
 const emit = defineEmits([]);
 const footRef = ref(null);
+const tawkSw = ref(false);
+
 
 const init = onMounted(() => {});
 </script>
@@ -295,6 +306,113 @@ const init = onMounted(() => {});
       min-width: calc(100% / 2 - 5px);
     }
   }
+}
+
+
+// tawk客服軟體
+.tawkBtn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  background: linear-gradient(180deg, #22a7fb, #6dc5fc);
+  box-shadow: 0 0 8px #063755;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  @include pos(br, calc(15% + 57px), 1%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 62%;
+  }
+}
+.tawkBox {
+    width: 350px;
+    height: calc(100vh - 20px);
+    max-height: 550px;
+    padding: 32px 0 0;
+    margin: auto;
+    position: fixed;
+    @include pos(tbrl, 0);
+    background-color: #fff;
+    box-shadow: 0 0 8px #000;
+    z-index: -99;
+    opacity: 0;
+    transform-origin: center bottom;
+    transform: scaleY(0.1);
+    transition: .5s;
+    &.on {
+        z-index: 99;
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    @include phone {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        margin: unset;
+        padding: 40px 0;
+        position: fixed;
+        bottom: unset;
+    }
+    .tawkClose {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        @include pos(tr, 6px, 10px);
+        z-index: 99;
+        border-radius: 50%;
+        border: 1px solid #999;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: 0.3s;
+        @include hover {
+            &:hover {
+                opacity: 1;
+            }
+        }
+        @include phone {
+            width: 30px;
+            height: 30px;
+            opacity: 1;
+            transition: unset;
+        }
+        &::after,
+        &::before {
+            content: "";
+            width: calc(100% - 8px);
+            height: 2px;
+            margin: auto;
+            background-color: #999;
+            position: absolute;
+            @include pos(tbrl, 0);
+        }
+        &::after {
+            transform: rotate(45deg);
+        }
+        &::before {
+            transform: rotate(-45deg);
+        }
+    }
+    .tawkDialog {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        @include phone {
+            width: calc(100% + 2px);
+            &::before {
+                content: "";
+                width: 100%;
+                height: 2px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                background-color: #fff;
+                z-index: 2000000001;
+            }
+        }
+    }
 }
 
 </style>
